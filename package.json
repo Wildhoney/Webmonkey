@@ -1,8 +1,12 @@
 {
   "name": "webmonkey",
   "version": "0.1.0",
+  "description": "Robust and versatile headless monkey testing for the modern web with reproducible steps, error alerts, strategy sharing and many other good things.",
   "main": "src/index.js",
   "repository": "git@github.com:Wildhoney/Webmonkey.git",
   "author": "Adam Timberlake <adam.timberlake@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "webmonkey": "^0.1.0"
+  }
 }
