@@ -15,7 +15,10 @@ export default {
         }),
         babel({
             exclude: 'node_modules/**',
-            plugins: ['@babel/plugin-syntax-import-meta']
+            plugins: [
+                '@babel/plugin-syntax-import-meta',
+                '@babel/plugin-syntax-dynamic-import'
+            ]
         })
     ]
 };
