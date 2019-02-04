@@ -2,21 +2,25 @@
     "name": "webmonkey",
     "version": "0.1.0",
     "description": "Robust and versatile headless monkey testing for the modern web with reproducible steps, error alerts, strategy sharing and many other good things.",
-    "main": "src/index.js",
+    "main": "bin/index.js",
     "repository": "git@github.com:Wildhoney/Webmonkey.git",
     "author": "Adam Timberlake <adam.timberlake@gmail.com>",
     "license": "MIT",
     "scripts": {
+        "build": "taskfile build",
         "format": "taskfile format",
         "test": "taskfile test",
-        "coverage": "taskfile test/coverage"
+        "coverage": "taskfile coverage"
     },
     "devDependencies": {
+        "@babel/plugin-syntax-import-meta": "^7.2.0",
         "ava": "^1.2.0",
         "coveralls": "^3.0.2",
         "nyc": "13.2.0",
         "prettier": "^1.16.4",
-        "puppeteer": "^1.12.1",
+        "rollup": "^1.1.2",
+        "rollup-plugin-babel": "^4.3.2",
+        "rollup-plugin-replace": "^2.1.0",
         "taskfile": "^0.8.5"
     },
     "ava": {
@@ -26,5 +30,8 @@
             "core-js",
             "./tests/helpers/browser-env.js"
         ]
+    },
+    "dependencies": {
+        "puppeteer": "^1.12.1"
     }
 }
