@@ -1,0 +1,15 @@
+- name: format
+  tasks: 
+    - prettier --write '{bin,src}/**/*.{mjs,js}'
+    - prettier --write '*.{js,json}'
+
+- name: test/spec
+  task: nyc ava
+
+- name: test/coverage
+  tasks:
+    - taskfile test/spec
+    - - nyc report --reporter=text-lcov | coveralls
+
+- name: test
+  task: taskfile test/spec
