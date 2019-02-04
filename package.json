@@ -12,6 +12,9 @@
         "test": "taskfile test",
         "coverage": "taskfile coverage"
     },
+    "dependencies": {
+        "puppeteer": "^1.12.1"
+    },
     "devDependencies": {
         "@babel/plugin-syntax-import-meta": "^7.2.0",
         "ava": "^1.2.0",
@@ -30,8 +33,5 @@
             "core-js",
             "./tests/helpers/browser-env.js"
         ]
-    },
-    "dependencies": {
-        "puppeteer": "^1.12.1"
     }
 }
