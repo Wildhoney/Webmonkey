@@ -16,7 +16,8 @@
         "capitalize": "^2.0.0",
         "chalk": "^2.4.2",
         "figlet": "^1.2.1",
-        "puppeteer": "^1.12.1"
+        "puppeteer": "^1.12.1",
+        "ramda": "^0.26.1"
     },
     "devDependencies": {
         "@babel/plugin-syntax-import-meta": "^7.2.0",
