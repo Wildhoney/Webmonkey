@@ -13,6 +13,9 @@
         "coverage": "taskfile coverage"
     },
     "dependencies": {
+        "capitalize": "^2.0.0",
+        "chalk": "^2.4.2",
+        "figlet": "^1.2.1",
         "puppeteer": "^1.12.1"
     },
     "devDependencies": {

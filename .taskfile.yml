@@ -3,7 +3,7 @@
 
 - name: format
   tasks: 
-    - prettier --write 'bin/**/*.{mjs,js}'
+    - prettier --write '{bin,src}/**/*.{mjs,js}'
     - prettier --write '*.{js,json}'
 
 - name: test/spec
