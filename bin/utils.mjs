@@ -2,18 +2,21 @@ import path from 'path';
 import process from 'process';
 import * as R from 'ramda';
 
-const defaultConfig = {
-    setup: R.identity
-};
+export async function getHooks() {
+    const defaults = {
+        create: R.identity,
+        destroy: R.identity
+    };
 
-export async function getConfig() {
     try {
-        const config = await import(path.resolve(
-            process.cwd(),
-            'webmonkey.config.mjs'
-        ));
-        return { ...defaultConfig, ...config };
-    } catch (error) {
-        return defaultConfig;
+        return {
+            ...defaults,
+            ...(await import(path.resolve(
+                process.cwd(),
+                'webmonkey.hooks.mjs'
+            )))
+        };
+    } catch {
+        return defaults;
     }
 }

@@ -6,7 +6,7 @@ import figlet from 'figlet';
 import capitalise from 'capitalize';
 import chalk from 'chalk';
 import runWebmonkey from '../src/index.mjs';
-import { getConfig } from './utils.mjs';
+import { getHooks } from './utils.mjs';
 
 const bin = path.dirname(new URL(import.meta.url).pathname);
 const pkg = JSON.parse(
@@ -22,7 +22,7 @@ async function main() {
         pkg.version,
         '\n\n'
     );
-    return await runWebmonkey(await getConfig());
+    return await runWebmonkey(await getHooks());
 }
 
 main();
