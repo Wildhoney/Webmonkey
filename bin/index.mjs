@@ -7,7 +7,7 @@ import capitalise from 'capitalize';
 import chalk from 'chalk';
 import minimist from 'minimist';
 import runWebmonkey from '../src/index.mjs';
-import { getHooks } from './utils.mjs';
+import { getHooks, getConfig } from './utils.mjs';
 
 const argv = minimist(process.argv.slice(2));
 const bin = path.dirname(new URL(import.meta.url).pathname);
@@ -24,7 +24,9 @@ async function main() {
         pkg.version,
         '\n\n'
     );
-    return await runWebmonkey(await getHooks(argv.hooks));
+    const config = getConfig(argv);
+    const hooks = await getHooks(config.hooks);
+    return await runWebmonkey({ ...config, hooks });
 }
 
 main();
