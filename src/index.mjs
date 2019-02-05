@@ -1,22 +1,25 @@
 import puppeteer from 'puppeteer';
-import delay from 'delay';
 import * as R from 'ramda';
 import * as utils from './utils';
 
-export default async function main({ url, headless, hooks }) {
+export default async function main({ url, headless, hooks, helpers }) {
     const browser = await puppeteer.launch({ headless, devtools: true });
     const page = await browser.newPage();
 
     await hooks.create(page);
     await page.goto(url);
 
-    await Promise.all(
-        R.range(0, 1000).map(() => {
-            utils.runBehaviour(page);
-        })
-    );
+    page.on('pageerror', error => {
+        helpers.log('error', error.toString());
+        return void browser.close();
+    });
 
-    await delay(25000);
+    utils.mockNatives(page);
+
+    for (const _ of R.range(0, 5000)) {
+        await utils.runBehaviour({ page, helpers });
+    }
+
     await browser.close();
     await hooks.destroy(page);
 }
