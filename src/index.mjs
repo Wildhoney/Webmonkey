@@ -7,6 +7,14 @@ export default async function main({ url, headless, hooks, helpers }) {
     const page = await browser.newPage();
     utils.mockNatives(page);
 
+    const client = await page.target().createCDPSession();
+    await client.send('Network.emulateNetworkConditions', {
+        offline: false,
+        downloadThroughput: (4 * 1024 * 1024) / 8,
+        uploadThroughput: (3 * 1024 * 1024) / 8,
+        latency: 20
+    });
+
     page.on('pageerror', error => {
         helpers.log('error', error.toString());
         return void browser.close();
