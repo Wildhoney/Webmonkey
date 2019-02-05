@@ -2,7 +2,7 @@ import path from 'path';
 import process from 'process';
 import * as R from 'ramda';
 
-export async function getHooks() {
+export async function getHooks(filepath) {
     const defaults = {
         create: R.identity,
         destroy: R.identity
@@ -11,10 +11,9 @@ export async function getHooks() {
     try {
         return {
             ...defaults,
-            ...(await import(path.resolve(
-                process.cwd(),
-                'webmonkey.hooks.mjs'
-            )))
+            ...(await import(filepath
+                ? path.resolve(filepath)
+                : path.resolve(process.cwd(), 'webmonkey.hooks.mjs')))
         };
     } catch {
         return defaults;
