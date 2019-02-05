@@ -1,4 +1,4 @@
-export default async function click({ page, helpers }) {
+export default async function clicker({ page, helpers }) {
     try {
         const { height, width } = await page.evaluate(() => ({
             height: window.innerHeight,
@@ -10,6 +10,6 @@ export default async function click({ page, helpers }) {
 
         await page.mouse.click(x, y);
 
-        return void helpers.log('click', `Performed a click at ${x}, ${y}`);
+        return void helpers.log('clicker', `Performed a click at ${x}, ${y}`);
     } catch {}
 }
