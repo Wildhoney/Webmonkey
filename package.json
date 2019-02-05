@@ -15,6 +15,7 @@
     "dependencies": {
         "capitalize": "^2.0.0",
         "chalk": "^2.4.2",
+        "delay": "^4.1.0",
         "figlet": "^1.2.1",
         "minimist": "^1.2.0",
         "puppeteer": "^1.12.1",
