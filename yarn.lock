@@ -4428,6 +4428,11 @@ stack-utils@^1.0.2:
   resolved "https://registry.yarnpkg.com/stack-utils/-/stack-utils-1.0.2.tgz#33eba3897788558bebfc2db059dc158ec36cebb8"
   integrity sha512-MTX+MeG5U994cazkjd/9KNAapsHnibjMLnfXodlkXw76JEea0UiNzrqidzo1emMwk7w5Qhc9jd4Bn9TBb1MFwA==
 
+starwars@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/starwars/-/starwars-1.0.0.tgz#33d4bb687e107d275292e447e5f5a03c633deddf"
+  integrity sha1-M9S7aH4QfSdSkuRH5fWgPGM97d8=
+
 static-extend@^0.1.1:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/static-extend/-/static-extend-0.1.2.tgz#60809c39cbff55337226fd5e0b520f341f1fb5c6"
