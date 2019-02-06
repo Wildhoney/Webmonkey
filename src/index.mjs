@@ -36,11 +36,13 @@ export default async function main({
         hasErrored = true;
         helpers.log('error', error.toString());
         isNavigation && (await utils.awaitPage(timeout));
+        const path = path.resolve(
+            screenshots,
+            `webmonkey_error_${moment().format()}.png`
+        );
         await page.screenshot({
-            path: path.resolve(
-                screenshots,
-                `webmonkey_error_${moment().format()}.png`
-            )
+            path,
+            fullPage: true
         });
         return void browser.close();
     });
