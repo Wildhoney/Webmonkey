@@ -7,7 +7,6 @@ export default async function clicker({ page, helpers }) {
 
         const x = Math.round(Math.random() * height);
         const y = Math.round(Math.random() * width);
-
         await page.mouse.click(x, y);
 
         return void helpers.log('clicker', `Performed a click at ${x}, ${y}`);

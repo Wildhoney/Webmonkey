@@ -1,5 +1,5 @@
 import test from 'ava';
-import { stub, spy } from "sinon"
+import { stub, spy } from 'sinon';
 import * as utils from '../utils.mjs';
 // import * as behaviours from '../behaviours/index.mjs';
 

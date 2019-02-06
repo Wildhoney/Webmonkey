@@ -2,8 +2,13 @@ import puppeteer from 'puppeteer';
 import * as R from 'ramda';
 import * as utils from './utils';
 
+let errored = false;
+let urls = new Set();
+
+let isNavigation = false;
+
 export default async function main({ url, debug, hooks, helpers }) {
-    const options = debug ? { headless: false, devtools: true} : {};
+    const options = debug ? { headless: false, devtools: true } : {};
     const browser = await puppeteer.launch(options);
     const page = await browser.newPage();
     utils.mockNatives(page);
@@ -16,16 +21,22 @@ export default async function main({ url, debug, hooks, helpers }) {
         latency: 20
     });
 
-    page.on('pageerror', error => {
-        helpers.log('error', error.toString());
-        return void browser.close();
-    });
-
     await hooks.create(page);
     await page.goto(url);
 
+    await page.on('request', async request => {
+        isNavigation = request.isNavigationRequest();
+    });
+
     for (const _ of R.range(0, 5000)) {
-        await utils.runBehaviour({ page, helpers });
+        try {
+            isNavigation &&
+                (await page.waitForNavigation({
+                    waitUntil: 'load',
+                    timeout: 10000
+                }));
+        } catch {}
+        !errored && (await utils.runBehaviour({ page, helpers }));
     }
 
     await browser.close();

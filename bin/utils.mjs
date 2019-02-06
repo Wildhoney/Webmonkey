@@ -11,7 +11,7 @@ export function getConfig(argv) {
     return {
         ...defaults,
         ...argv,
-        hooks: argv.hooks ? path.resolve(argv.hooks) : defaults.hooks,
+        hooks: argv.hooks ? path.resolve(argv.hooks) : defaults.hooks
     };
 }
 
