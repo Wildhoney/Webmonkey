@@ -1,6 +1,7 @@
 import path from 'path';
 import process from 'process';
 import * as R from 'ramda';
+import humps from 'humps';
 
 export function getConfig(argv) {
     const defaults = {
@@ -8,13 +9,16 @@ export function getConfig(argv) {
         hooks: path.resolve(process.cwd(), 'webmonkey.hooks.mjs'),
         screenshots: path.resolve(process.cwd()),
         debug: false,
-        timeout: 10000
+        timeout: 10000,
+        iterations: 50,
+        delayFrom: 0,
+        delayTo: 1000
     };
-    return {
+    return humps.camelizeKeys({
         ...defaults,
         ...argv,
         hooks: argv.hooks ? path.resolve(argv.hooks) : defaults.hooks
-    };
+    });
 }
 
 export async function getHooks(filepath) {

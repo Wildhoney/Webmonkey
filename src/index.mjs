@@ -2,6 +2,7 @@ import path from 'path';
 import puppeteer from 'puppeteer';
 import * as R from 'ramda';
 import moment from 'moment';
+import delay from 'delay';
 import * as utils from './utils';
 
 let hasErrored = false;
@@ -11,6 +12,9 @@ export default async function main({
     url,
     debug,
     timeout,
+    iterations,
+    delayFrom,
+    delayTo,
     hooks,
     screenshots,
     helpers
@@ -46,8 +50,9 @@ export default async function main({
         isNavigation = request.isNavigationRequest();
     });
 
-    for (const _ of R.range(0, 5000)) {
-        isNavigation && (await utils.awaitPage(timeout));
+    for (const _ of R.range(0, iterations + 1)) {
+        !hasErrored && isNavigation && (await utils.awaitPage(timeout));
+        await delay(utils.randomBetween(delayFrom, delayTo));
         !hasErrored && (await utils.runBehaviour({ page, helpers }));
     }
 
