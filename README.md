@@ -17,5 +17,5 @@ It's important to remember that [monkey testing](https://en.wikipedia.org/wiki/M
 ## Getting Started
 
 ```console
-foo@bar:~$ node --experimental-modules ./bin/index.mjs --headless=false --url https://news.bbc.co.uk/
+foo@bar:~$ node --experimental-modules ./bin/index.mjs --debug --url https://news.bbc.co.uk/
 ```

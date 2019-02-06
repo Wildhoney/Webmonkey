@@ -2,8 +2,9 @@ import puppeteer from 'puppeteer';
 import * as R from 'ramda';
 import * as utils from './utils';
 
-export default async function main({ url, headless, hooks, helpers }) {
-    const browser = await puppeteer.launch({ headless, devtools: true });
+export default async function main({ url, debug, hooks, helpers }) {
+    const options = debug ? { headless: false, devtools: true} : {};
+    const browser = await puppeteer.launch(options);
     const page = await browser.newPage();
     utils.mockNatives(page);
 
