@@ -1,0 +1,9 @@
+{
+    "parser": "babel-eslint",
+    "extends": ["standard", "prettier", "prettier/standard"],
+    "rules": {
+        "no-sequences": "off"
+    },
+    "globals": {
+    }
+}

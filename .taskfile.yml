@@ -7,7 +7,11 @@
     - prettier --write '*.{js,json}'
 
 - name: test/spec
-  task: nyc ava
+  tasks:
+    - eslint "{bin,src}/**/**.{mjs,js}"
+    - - prettier --list-different '{bin,src}/**/*.{mjs,js}'
+    - - prettier --list-different '*.{mjs,js,json}'
+    # - - - nyc ava
 
 - name: coverage
   tasks:

@@ -5,8 +5,9 @@ export default async function typer({ page, helpers }) {
     try {
         await page.evaluate(async () => {
             const inputs = [...document.querySelectorAll('input')];
-            const input = inputs[await randomBetween(0, inputs.length - 1)];
-            const clear = fiftyFifty();
+            const input =
+                inputs[await window.randomBetween(0, inputs.length - 1)];
+            const clear = window.fiftyFifty();
             input && clear && (input.value = '');
             input && input.focus();
         });

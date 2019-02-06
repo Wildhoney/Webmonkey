@@ -19,7 +19,7 @@ export function exposeFunctions(page) {
     page.exposeFunction('fiftyFifty', fiftyFifty);
 }
 
-export async function awaitPage(timeout) {
+export async function awaitPage(page, timeout) {
     try {
         await page.waitForNavigation({
             waitUntil: 'load',

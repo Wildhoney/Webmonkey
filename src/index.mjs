@@ -34,13 +34,12 @@ export default async function main({
     page.on('pageerror', async error => {
         hasErrored = true;
         helpers.log('error', error.toString());
-        isNavigation && (await utils.awaitPage(timeout));
-        const path = path.resolve(
-            screenshots,
-            `webmonkey_error_${moment().format()}.png`
-        );
+        isNavigation && (await utils.awaitPage(page, timeout));
         await page.screenshot({
-            path,
+            path: path.resolve(
+                screenshots,
+                `webmonkey_error_${moment().format()}.png`
+            ),
             fullPage: true
         });
         return void browser.close();
@@ -53,9 +52,10 @@ export default async function main({
     });
 
     for (const _ of R.range(0, iterations + 1)) {
-        !hasErrored && isNavigation && (await utils.awaitPage(timeout));
+        !hasErrored && isNavigation && (await utils.awaitPage(page, timeout));
         await delay(utils.randomBetween(0, 1500));
         !hasErrored && (await utils.runBehaviour({ page, helpers }));
+        void _;
     }
 
     await browser.close();

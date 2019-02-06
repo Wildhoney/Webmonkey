@@ -27,7 +27,7 @@ async function main() {
     );
     const config = utils.getConfig(argv);
     const hooks = await utils.getHooks(config.hooks);
-    return await run({ ...config, hooks, helpers: { log } });
+    return run({ ...config, hooks, helpers: { log } });
 }
 
 main();
