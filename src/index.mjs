@@ -33,6 +33,7 @@ export default async function main({
     });
 
     page.on('pageerror', async error => {
+        hasErrored = true;
         helpers.log('error', error.toString());
         isNavigation && (await utils.awaitPage(timeout));
         await page.screenshot({
