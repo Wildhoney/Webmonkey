@@ -13,8 +13,6 @@ export default async function main({
     debug,
     timeout,
     iterations,
-    delayFrom,
-    delayTo,
     hooks,
     screenshots,
     helpers
@@ -55,7 +53,7 @@ export default async function main({
 
     for (const _ of R.range(0, iterations + 1)) {
         !hasErrored && isNavigation && (await utils.awaitPage(timeout));
-        await delay(utils.randomBetween(delayFrom, delayTo));
+        await delay(utils.randomBetween(0, 1500));
         !hasErrored && (await utils.runBehaviour({ page, helpers }));
     }
 

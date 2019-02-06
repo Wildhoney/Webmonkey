@@ -10,9 +10,7 @@ export function getConfig(argv) {
         screenshots: path.resolve(process.cwd()),
         debug: false,
         timeout: 10000,
-        iterations: 50,
-        delayFrom: 0,
-        delayTo: 1000
+        iterations: 50
     };
     return humps.camelizeKeys({
         ...defaults,
