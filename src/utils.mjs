@@ -14,6 +14,11 @@ export function silenceDialogs(page) {
     page.exposeFunction('prompt', R.identity);
 }
 
+export function exposeFunctions(page) {
+    page.exposeFunction('randomBetween', randomBetween);
+    page.exposeFunction('fiftyFifty', fiftyFifty);
+}
+
 export async function awaitPage(timeout) {
     try {
         await page.waitForNavigation({
@@ -25,4 +30,8 @@ export async function awaitPage(timeout) {
 
 export function randomBetween(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+export function fiftyFifty() {
+    return Math.random() > 0.5;
 }

@@ -21,6 +21,7 @@ export default async function main({
     const browser = await puppeteer.launch(options);
     const page = await browser.newPage();
     utils.silenceDialogs(page);
+    utils.exposeFunctions(page);
 
     const client = await page.target().createCDPSession();
     await client.send('Network.emulateNetworkConditions', {
