@@ -6,7 +6,8 @@ export function getConfig(argv) {
     const defaults = {
         url: 'https://www.google.com/',
         hooks: path.resolve(process.cwd(), 'webmonkey.hooks.mjs'),
-        debug: false
+        debug: false,
+        timeout: 10000
     };
     return {
         ...defaults,

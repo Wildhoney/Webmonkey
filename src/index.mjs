@@ -7,7 +7,7 @@ let urls = new Set();
 
 let isNavigation = false;
 
-export default async function main({ url, debug, hooks, helpers }) {
+export default async function main({ url, debug, timeout, hooks, helpers }) {
     const options = debug ? { headless: false, devtools: true } : {};
     const browser = await puppeteer.launch(options);
     const page = await browser.newPage();
@@ -33,7 +33,7 @@ export default async function main({ url, debug, hooks, helpers }) {
             isNavigation &&
                 (await page.waitForNavigation({
                     waitUntil: 'load',
-                    timeout: 10000
+                    timeout
                 }));
         } catch {}
         !errored && (await utils.runBehaviour({ page, helpers }));
