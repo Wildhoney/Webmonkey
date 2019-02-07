@@ -52,7 +52,7 @@ export default async function main({
 
     for (const _ of R.range(0, iterations + 1)) {
         !hasErrored && isNavigation && (await utils.awaitPage(page, timeout));
-        await delay(utils.randomBetween(0, 1500));
+        await delay(utils.randomBetween(0, 10));
         !hasErrored && (await utils.runBehaviour({ page, helpers }));
         void _;
     }

@@ -13,7 +13,7 @@ export default async function typer({ page, helpers }) {
         });
 
         const text = starwars();
-        await page.keyboard.type(text, { delay: utils.randomBetween(0, 10) });
+        await page.keyboard.type(text, { delay: utils.randomBetween(0, 5) });
 
         const pressEnter = utils.fiftyFifty();
         pressEnter && (await page.keyboard.press('Enter'));
