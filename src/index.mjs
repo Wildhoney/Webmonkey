@@ -39,8 +39,7 @@ export default async function main({
             path: path.resolve(
                 screenshots,
                 `webmonkey_error_${moment().format()}.png`
-            ),
-            fullPage: true
+            )
         });
         return void browser.close();
     });
