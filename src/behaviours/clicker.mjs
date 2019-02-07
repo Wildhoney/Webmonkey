@@ -18,9 +18,10 @@ export default async function clicker({ page, helpers }) {
                 node.style.borderRadius = '50%';
                 node.style.border = '5px solid red';
                 node.style.position = 'absolute';
-                node.style.zIndex = 10000;
+                node.style.zIndex = Number.MAX_SAFE_INTEGER;
                 node.style.top = 0;
                 node.style.left = 0;
+                node.style.pointerEvents = 'none';
                 document.body.appendChild(node);
             },
             { x, y }
