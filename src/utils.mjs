@@ -20,15 +20,6 @@ export function exposeFunctions(page) {
     page.exposeFunction('fiftyFifty', fiftyFifty);
 }
 
-export async function awaitPage(page, timeout) {
-    try {
-        return page.waitForNavigation({
-            waitUntil: 'load',
-            timeout
-        });
-    } catch {}
-}
-
 export function randomBetween(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }

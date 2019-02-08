@@ -9,7 +9,6 @@ export function getConfig(argv) {
         hooks: path.resolve(process.cwd(), 'webmonkey.hooks.mjs'),
         screenshots: path.resolve(process.cwd()),
         debug: false,
-        timeout: 10000,
         iterations: 50
     };
     return humps.camelizeKeys({

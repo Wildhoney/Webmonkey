@@ -6,12 +6,10 @@ import delay from 'delay';
 import * as utils from './utils';
 
 let hasErrored = false;
-let isNavigation = false;
 
 export default async function main({
     url,
     debug,
-    timeout,
     iterations,
     hooks,
     screenshots,
@@ -34,7 +32,6 @@ export default async function main({
     page.on('pageerror', async error => {
         hasErrored = true;
         helpers.log('error', error.toString());
-        isNavigation && (await utils.awaitPage(page, timeout));
         await page.screenshot({
             path: path.resolve(
                 screenshots,
@@ -46,12 +43,15 @@ export default async function main({
 
     await hooks.create(page);
     await page.goto(url);
-    await page.on('request', async request => {
-        isNavigation = request.isNavigationRequest();
+
+    page.on('dialog', dialog => dialog.dismiss());
+    page.evaluate(() => {
+        window.onbeforeunload = function() {
+            return 'You have unsaved changes!';
+        };
     });
 
     for (const _ of R.range(0, iterations + 1)) {
-        !hasErrored && isNavigation && (await utils.awaitPage(page, timeout));
         await delay(utils.randomBetween(0, 10));
         !hasErrored && (await utils.runBehaviour({ page, helpers }));
         void _;
