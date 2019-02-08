@@ -1,11 +1,11 @@
 import * as R from 'ramda';
-import * as behaviours from './behaviours/index.mjs';
+import * as actions from './actions/index.mjs';
 
 export function runBehaviour(params) {
-    const keys = Object.keys(behaviours);
+    const keys = Object.keys(actions);
     const count = keys.length;
     const name = keys[Math.floor(Math.random() * count)];
-    return behaviours[name](params);
+    return actions[name](params);
 }
 
 export function silenceDialogs(page) {
