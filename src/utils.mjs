@@ -12,6 +12,7 @@ export function silenceDialogs(page) {
     page.exposeFunction('alert', R.identity);
     page.exposeFunction('confirm', R.identity);
     page.exposeFunction('prompt', R.identity);
+    page.exposeFunction('print', R.identity);
 }
 
 export function exposeFunctions(page) {
@@ -21,7 +22,7 @@ export function exposeFunctions(page) {
 
 export async function awaitPage(page, timeout) {
     try {
-        await page.waitForNavigation({
+        return page.waitForNavigation({
             waitUntil: 'load',
             timeout
         });
