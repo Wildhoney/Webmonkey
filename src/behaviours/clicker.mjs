@@ -10,9 +10,13 @@ export default async function clicker({ page, helpers }) {
 
         await page.evaluate(
             ({ x, y }) => {
+                const scrollTop = document.documentElement.scrollTop;
+                const scrollLeft = document.documentElement.scrollLeft;
+
                 const node = document.createElement('div');
                 node.style.all = 'initial';
-                node.style.transform = `translate(${x}px, ${y}px)`;
+                node.style.transform = `translate(${x + scrollTop}px, ${y +
+                    scrollLeft}px)`;
                 node.style.width = '10px';
                 node.style.height = '10px';
                 node.style.borderRadius = '50%';
