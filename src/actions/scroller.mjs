@@ -14,7 +14,7 @@ export default async function scroller({ page, helpers }) {
         ({ top, left }) =>
             window.scroll({
                 top,
-                left,
+                left: 0,
                 behavior: 'smooth'
             }),
         { top, left }
