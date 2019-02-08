@@ -3,8 +3,8 @@ import * as utils from '../utils.mjs';
 
 export default async function scroller({ page, helpers }) {
     const { height, width } = await page.evaluate(() => ({
-        height: document.documentElement.scrollHeight,
-        width: document.documentElement.scrollWidth
+        height: document.documentElement.scrollHeight - window.innerHeight,
+        width: document.documentElement.scrollWidth - window.innerWidth
     }));
 
     const top = utils.randomBetween(0, height);
