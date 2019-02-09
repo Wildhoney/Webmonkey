@@ -17,7 +17,7 @@ export default async function main({
     const page = await browser.newPage();
     utils.silenceDialogs(page);
     utils.exposeFunctions(page);
-    utils.networkConditions(page);
+    utils.emulateNetworkConditions(page);
     utils.handleDialogs(page);
 
     page.on('pageerror', async error => {

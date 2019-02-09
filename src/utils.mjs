@@ -1,5 +1,12 @@
 import * as R from 'ramda';
 import * as actions from './actions/index.mjs';
+import presets from './helpers/network-presets.mjs';
+
+const getCDPSession = R.once(page => page.target().createCDPSession());
+
+const defaultNetworkConditions = R.find(R.propEq('label', 'Regular 4G'))(
+    presets
+);
 
 export function runBehaviour(params) {
     const keys = Object.keys(actions);
@@ -17,14 +24,15 @@ export function exposeFunctions(page) {
     page.exposeFunction('fiftyFifty', fiftyFifty);
 }
 
-export async function networkConditions(page) {
-    const client = await page.target().createCDPSession();
-    return client.send('Network.emulateNetworkConditions', {
-        offline: false,
-        downloadThroughput: (4 * 1024 * 1024) / 8,
-        uploadThroughput: (3 * 1024 * 1024) / 8,
-        latency: 20
-    });
+export async function emulateNetworkConditions(
+    page,
+    conditions = defaultNetworkConditions
+) {
+    const client = await getCDPSession(page);
+    return client.send(
+        'Network.emulateNetworkConditions',
+        R.dissoc('label')(conditions)
+    );
 }
 
 export function handleDialogs(page) {
