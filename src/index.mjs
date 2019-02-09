@@ -50,7 +50,7 @@ export default async function main({
         };
     });
 
-    for (const current of R.range(0, iterations + 1)) {
+    for (const current of R.range(0, iterations)) {
         const log = helpers.log(current + 1, iterations);
         !hasErrored && (await utils.runBehaviour({ page, log }));
     }
