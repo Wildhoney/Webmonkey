@@ -1,7 +1,9 @@
 import starwars from 'starwars';
+import chalk from 'chalk';
+import pluralise from 'pluralize';
 import * as utils from '../utils.mjs';
 
-export default async function typer({ page, helpers }) {
+export default async function typer({ page, log }) {
     try {
         await page.evaluate(async () => {
             const inputs = [...document.querySelectorAll('input')];
@@ -12,15 +14,20 @@ export default async function typer({ page, helpers }) {
             input && input.focus();
         });
 
-        const text = starwars();
-        await page.keyboard.type(text, { delay: utils.randomBetween(0, 5) });
+        const truncate = Math.random() > 0.15;
+        const length = utils.randomBetween(0, truncate ? 20 : Infinity);
+        const text = starwars().substring(0, utils.randomBetween(0, length));
+        await page.keyboard.type(text);
 
         const pressEnter = utils.fiftyFifty();
         pressEnter && (await page.keyboard.press('Enter'));
 
-        return void helpers.log(
+        return void log(
             'typer',
-            pressEnter ? `Typed "${text}" followed by ENTER` : `Typed "${text}"`
+            `${chalk.white(text.length)} ${chalk.gray(
+                pluralise('characters', text.length)
+            )}`,
+            pressEnter ? chalk.whiteBright.italic('enter') : ''
         );
     } catch {}
 }

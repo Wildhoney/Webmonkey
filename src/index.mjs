@@ -2,7 +2,6 @@ import path from 'path';
 import puppeteer from 'puppeteer';
 import * as R from 'ramda';
 import moment from 'moment';
-import delay from 'delay';
 import * as utils from './utils';
 
 let hasErrored = false;
@@ -51,10 +50,9 @@ export default async function main({
         };
     });
 
-    for (const _ of R.range(0, iterations + 1)) {
-        await delay(utils.randomBetween(0, 10));
-        !hasErrored && (await utils.runBehaviour({ page, helpers }));
-        void _;
+    for (const current of R.range(0, iterations + 1)) {
+        const log = helpers.log(current + 1, iterations);
+        !hasErrored && (await utils.runBehaviour({ page, log }));
     }
 
     await browser.close();

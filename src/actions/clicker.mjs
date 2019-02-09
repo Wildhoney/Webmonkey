@@ -1,4 +1,6 @@
-export default async function clicker({ page, helpers }) {
+import chalk from 'chalk';
+
+export default async function clicker({ page, log }) {
     try {
         const { height, width } = await page.evaluate(() => ({
             height: window.innerHeight,
@@ -17,10 +19,10 @@ export default async function clicker({ page, helpers }) {
                 node.style.all = 'initial';
                 node.style.transform = `translate(${x + scrollTop}px, ${y +
                     scrollLeft}px)`;
-                node.style.width = '10px';
-                node.style.height = '10px';
+                node.style.width = '3px';
+                node.style.height = '3px';
+                node.style.backgroundColor = 'black';
                 node.style.borderRadius = '50%';
-                node.style.border = '5px solid red';
                 node.style.position = 'absolute';
                 node.style.zIndex = Number.MAX_SAFE_INTEGER;
                 node.style.top = 0;
@@ -33,6 +35,11 @@ export default async function clicker({ page, helpers }) {
 
         await page.mouse.click(x, y);
 
-        return void helpers.log('clicker', `Clicked at ${x}, ${y}`);
+        return void log(
+            'clicker',
+            `${chalk.whiteBright(x)}${chalk.gray('px')}`,
+            chalk.gray('/'),
+            `${chalk.whiteBright(y)}${chalk.gray('px')}`
+        );
     } catch {}
 }

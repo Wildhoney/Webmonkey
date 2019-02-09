@@ -1,14 +1,24 @@
-import * as R from 'ramda';
-import * as theme from './theme.mjs';
+import chalk from 'chalk';
+import numeral from 'numeral';
+import capitalise from 'capitalize';
 
-const isError = R.equals('error');
+export default function log(current, total) {
+    const getTypeColour = () =>
+        chalk.level > 1 ? chalk.hex('#ffd2e8') : chalk.magentaBright;
 
-export default function log(type, message) {
-    const printType = isError(type) ? theme.error : theme.general;
-
-    console.log(
-        printType(` ${type} `),
-        theme.separator(':'),
-        theme.message(message)
-    );
+    return (type, ...message) => {
+        console.log(
+            chalk.gray('•'),
+            chalk.whiteBright(
+                numeral(current)
+                    .format('0,0')
+                    .padEnd(String(total).length)
+            ),
+            chalk.gray(`(of ${numeral(total).format('0,0')})`),
+            chalk.gray('•'),
+            getTypeColour().bold(capitalise(type).padEnd(10)),
+            chalk.gray('•'),
+            ...message
+        );
+    };
 }
