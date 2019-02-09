@@ -19,14 +19,8 @@ export default async function main({
     const page = await browser.newPage();
     utils.silenceDialogs(page);
     utils.exposeFunctions(page);
-
-    const client = await page.target().createCDPSession();
-    await client.send('Network.emulateNetworkConditions', {
-        offline: false,
-        downloadThroughput: (4 * 1024 * 1024) / 8,
-        uploadThroughput: (3 * 1024 * 1024) / 8,
-        latency: 20
-    });
+    utils.networkConditions(page);
+    utils.handleDialogs(page);
 
     page.on('pageerror', async error => {
         hasErrored = true;
@@ -43,12 +37,7 @@ export default async function main({
     await hooks.create(page);
     await page.goto(url);
 
-    page.on('dialog', dialog => dialog.dismiss());
-    page.evaluate(() => {
-        window.onbeforeunload = function() {
-            return 'You have unsaved changes!';
-        };
-    });
+    utils.preventNavigation(page);
 
     for (const current of R.range(0, iterations)) {
         const log = helpers.log(current + 1, iterations);
