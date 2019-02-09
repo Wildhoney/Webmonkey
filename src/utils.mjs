@@ -24,6 +24,13 @@ export function exposeFunctions(page) {
     page.exposeFunction('fiftyFifty', fiftyFifty);
 }
 
+export function pageDimensions(page) {
+    return page.evaluate(() => ({
+        height: window.innerHeight,
+        width: window.innerWidth
+    }));
+}
+
 export async function emulateNetworkConditions(
     page,
     conditions = defaultNetworkConditions
