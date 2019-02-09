@@ -4,8 +4,6 @@ import * as R from 'ramda';
 import moment from 'moment';
 import * as utils from './utils';
 
-let hasErrored = false;
-
 export default async function main({
     url,
     debug,
@@ -23,7 +21,6 @@ export default async function main({
     utils.handleDialogs(page);
 
     page.on('pageerror', async error => {
-        hasErrored = true;
         helpers.error(error.toString());
         await page.screenshot({
             path: path.resolve(
@@ -31,8 +28,6 @@ export default async function main({
                 `webmonkey_error_${moment().format()}.png`
             )
         });
-        await browser.close();
-        await hooks.destroy(page);
     });
 
     await hooks.create(page);
@@ -41,14 +36,10 @@ export default async function main({
     utils.preventNavigation(page);
 
     for (const current of R.range(0, iterations)) {
-        if (!hasErrored) {
-            const log = helpers.info(current + 1, iterations);
-            await utils.runBehaviour({ page, log });
-        }
+        const log = helpers.info(current + 1, iterations);
+        await utils.runBehaviour({ page, log });
     }
 
-    if (!hasErrored) {
-        await browser.close();
-        await hooks.destroy(page);
-    }
+    await browser.close();
+    await hooks.destroy(page);
 }
