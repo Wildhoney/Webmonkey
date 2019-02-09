@@ -1,0 +1,18 @@
+import chalk from 'chalk';
+import * as utils from '../utils.mjs';
+
+export default async function sizer({ page, log }) {
+    const height = utils.randomBetween(100, 2000);
+    const width = utils.randomBetween(100, 2000);
+    const scale = utils.randomBetween(1, 4);
+
+    await page.setViewport({ height, width, deviceScaleFactor: scale });
+
+    return void log(
+        'sizer',
+        `${chalk.whiteBright(height)}${chalk.gray('px')}`,
+        chalk.gray('×'),
+        `${chalk.whiteBright(width)}${chalk.gray('px')}`,
+        chalk.gray(`(${chalk.whiteBright(scale)} dpr)`)
+    );
+}
