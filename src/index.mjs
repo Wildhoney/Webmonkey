@@ -24,14 +24,15 @@ export default async function main({
 
     page.on('pageerror', async error => {
         hasErrored = true;
-        helpers.log('error', error.toString());
+        helpers.error(error.toString());
         await page.screenshot({
             path: path.resolve(
                 screenshots,
                 `webmonkey_error_${moment().format()}.png`
             )
         });
-        return void browser.close();
+        await browser.close();
+        await hooks.destroy(page);
     });
 
     await hooks.create(page);
@@ -40,10 +41,14 @@ export default async function main({
     utils.preventNavigation(page);
 
     for (const current of R.range(0, iterations)) {
-        const log = helpers.log(current + 1, iterations);
-        !hasErrored && (await utils.runBehaviour({ page, log }));
+        if (!hasErrored) {
+            const log = helpers.info(current + 1, iterations);
+            await utils.runBehaviour({ page, log });
+        }
     }
 
-    await browser.close();
-    await hooks.destroy(page);
+    if (!hasErrored) {
+        await browser.close();
+        await hooks.destroy(page);
+    }
 }
