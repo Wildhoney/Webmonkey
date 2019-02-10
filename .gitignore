@@ -15,3 +15,6 @@ bin/index.js
 
 # reports
 reports
+
+# config
+webmonkey.hooks.mjs

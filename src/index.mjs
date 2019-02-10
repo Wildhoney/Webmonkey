@@ -17,6 +17,7 @@ export default async function main({
     const options = debug ? { headless: false, devtools: true } : {};
     const browser = await puppeteer.launch(options);
     const page = await browser.newPage();
+
     utils.silenceDialogs(page);
     utils.exposeFunctions(page);
     utils.emulateNetworkConditions(page);
