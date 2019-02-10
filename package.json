@@ -15,8 +15,8 @@
         "format": "taskfile format",
         "test": "taskfile test",
         "coverage": "taskfile coverage",
-        "postpublish": "taskfile postpublish",
-        "prepublishOnly": "taskfile prepublish"
+        "prepublishOnly": "taskfile prepublish",
+        "postpublish": "taskfile postpublish"
     },
     "dependencies": {
         "capitalize": "^2.0.0",
