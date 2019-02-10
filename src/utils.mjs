@@ -54,6 +54,8 @@ export function handleDialogs(page) {
 
 export function preventNavigation(page) {
     page.evaluate(() => {
+        window.history.pushState = () => {};
+        window.history.replaceState = () => {};
         window.onbeforeunload = () => {
             return 'You are not going anywhere...';
         };
