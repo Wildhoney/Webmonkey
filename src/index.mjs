@@ -12,7 +12,7 @@ export default async function main({
     debug,
     iterations,
     hooks,
-    screenshots,
+    report,
     output
 }) {
     const options = debug ? { headless: false, devtools: true } : {};
@@ -27,15 +27,17 @@ export default async function main({
         output.error(error.toString());
         queue.add(
             page.screenshot({
-                path: path.resolve(
-                    screenshots,
-                    `webmonkey_error_${moment().format()}.png`
+                path: path.join(
+                    report,
+                    'screenshots',
+                    `${moment().format('HH:mm:ss')}.png`
                 )
             })
         );
     });
 
     await hooks.create(page);
+    await page.tracing.start({ path: path.join(report, 'timeline.json') });
     await page.goto(url);
 
     utils.preventNavigation(page);
@@ -48,6 +50,7 @@ export default async function main({
         await Promise.all([...queue]);
     }
 
+    await page.tracing.stop();
     await browser.close();
     await hooks.destroy(page);
 

@@ -12,3 +12,6 @@ yarn-error.log
 
 # build
 bin/index.js
+
+# reports
+reports
