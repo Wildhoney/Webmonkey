@@ -45,9 +45,9 @@ export default async function main({
             page,
             output: output.info(current + 1, iterations)
         });
+        await Promise.all([...queue]);
     }
 
-    await Promise.all([...queue]);
     await browser.close();
     await hooks.destroy(page);
 
