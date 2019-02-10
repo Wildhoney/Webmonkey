@@ -1,4 +1,3 @@
-bin/**.mjs
 media/
 src/
 .eslintrc
