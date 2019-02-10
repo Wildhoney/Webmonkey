@@ -4,6 +4,8 @@ import * as R from 'ramda';
 import moment from 'moment';
 import * as utils from './utils';
 
+const queue = new Set();
+
 export default async function main({
     url,
     debug,
@@ -22,12 +24,14 @@ export default async function main({
 
     page.on('pageerror', async error => {
         helpers.error(error.toString());
-        await page.screenshot({
-            path: path.resolve(
-                screenshots,
-                `webmonkey_error_${moment().format()}.png`
-            )
-        });
+        queue.add(
+            page.screenshot({
+                path: path.resolve(
+                    screenshots,
+                    `webmonkey_error_${moment().format()}.png`
+                )
+            })
+        );
     });
 
     await hooks.create(page);
@@ -39,6 +43,9 @@ export default async function main({
         const log = helpers.info(current + 1, iterations);
         await utils.runBehaviour({ page, log });
     }
+
+    console.log(queue.size);
+    await Promise.all([...queue]);
 
     await browser.close();
     await hooks.destroy(page);
