@@ -11,11 +11,16 @@ export default async function scroller({ page, output }) {
     const left = 0;
 
     await page.evaluate(
-        ({ top, left }) =>
-            window.scroll({
+        ({ top, left }) => {
+            const scroll =
+                typeof window.scroll === 'function'
+                    ? window.scroll
+                    : window.scrollTo;
+            scroll({
                 top,
                 left
-            }),
+            });
+        },
         { top, left }
     );
 
