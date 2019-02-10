@@ -8,7 +8,7 @@ import chalk from 'chalk';
 import minimist from 'minimist';
 import run from '../src/index.mjs';
 import * as utils from './utils.mjs';
-import { info, error } from './helpers/log.mjs';
+import * as output from './helpers/output.mjs';
 
 const argv = minimist(process.argv.slice(2));
 const bin = path.dirname(new URL(import.meta.url).pathname);
@@ -27,7 +27,7 @@ async function main() {
     );
     const config = utils.getConfig(argv);
     const hooks = await utils.getHooks(config.hooks);
-    return run({ ...config, hooks, helpers: { info, error } });
+    return run({ ...config, hooks, output });
 }
 
 main();

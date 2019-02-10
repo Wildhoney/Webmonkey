@@ -37,3 +37,18 @@ export function info(current, total) {
         );
     };
 }
+
+export function summary(total, errors) {
+    const getErrorColour = () =>
+        errors === 0 ? chalk.greenBright : chalk.redBright;
+
+    console.log(
+        `\n${getErrorColour()('•')}`,
+        chalk.gray('Finished running'),
+        chalk.whiteBright(total),
+        chalk.gray('actions which resulted in'),
+        chalk.whiteBright(errors),
+        chalk.gray('errors.'),
+        '\n'
+    );
+}

@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import pluralise from 'pluralize';
 import * as utils from '../utils.mjs';
 
-export default async function typer({ page, log }) {
+export default async function typer({ page, output }) {
     try {
         await page.evaluate(async () => {
             const inputs = [...document.querySelectorAll('input')];
@@ -22,7 +22,7 @@ export default async function typer({ page, log }) {
         const pressEnter = utils.fiftyFifty();
         pressEnter && (await page.keyboard.press('Enter'));
 
-        return void log(
+        return void output(
             'typer',
             `${chalk.white(text.length)} ${chalk.gray(
                 pluralise('characters', text.length)

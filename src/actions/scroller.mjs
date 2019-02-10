@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import * as utils from '../utils.mjs';
 
-export default async function scroller({ page, log }) {
+export default async function scroller({ page, output }) {
     const { height } = await page.evaluate(() => ({
         height: document.documentElement.scrollHeight - window.innerHeight,
         width: document.documentElement.scrollWidth - window.innerWidth
@@ -19,7 +19,7 @@ export default async function scroller({ page, log }) {
         { top, left }
     );
 
-    return void log(
+    return void output(
         'scroller',
         `${chalk.whiteBright(top)}${chalk.gray('px')}`,
         chalk.gray('/'),

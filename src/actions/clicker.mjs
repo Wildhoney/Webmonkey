@@ -2,7 +2,7 @@ import chalk from 'chalk';
 import addMarker from '../helpers/marker.mjs';
 import * as utils from '../utils.mjs';
 
-export default async function clicker({ page, log }) {
+export default async function clicker({ page, output }) {
     const { height, width } = await utils.pageDimensions(page);
     const x = Math.round(Math.random() * height);
     const y = Math.round(Math.random() * width);
@@ -10,7 +10,7 @@ export default async function clicker({ page, log }) {
     await addMarker(page, 'orange', x, y);
     await page.mouse.click(x, y);
 
-    return void log(
+    return void output(
         'clicker',
         `${chalk.whiteBright(x)}${chalk.gray('px')}`,
         chalk.gray('/'),

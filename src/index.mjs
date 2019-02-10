@@ -1,5 +1,5 @@
 import path from 'path';
-import process from "process"
+import process from 'process';
 import puppeteer from 'puppeteer';
 import * as R from 'ramda';
 import moment from 'moment';
@@ -13,7 +13,7 @@ export default async function main({
     iterations,
     hooks,
     screenshots,
-    helpers
+    output
 }) {
     const options = debug ? { headless: false, devtools: true } : {};
     const browser = await puppeteer.launch(options);
@@ -24,7 +24,7 @@ export default async function main({
     utils.handleDialogs(page);
 
     page.on('pageerror', async error => {
-        helpers.error(error.toString());
+        output.error(error.toString());
         queue.add(
             page.screenshot({
                 path: path.resolve(
@@ -41,13 +41,16 @@ export default async function main({
     utils.preventNavigation(page);
 
     for (const current of R.range(0, iterations)) {
-        const log = helpers.info(current + 1, iterations);
-        await utils.runBehaviour({ page, log });
+        await utils.runBehaviour({
+            page,
+            output: output.info(current + 1, iterations)
+        });
     }
 
     await Promise.all([...queue]);
     await browser.close();
     await hooks.destroy(page);
 
+    output.summary(iterations, queue.size);
     process.exitCode = R.clamp(0, 1)(queue.size);
 }
