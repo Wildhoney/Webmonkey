@@ -20,3 +20,9 @@
 
 - name: test
   task: taskfile test/spec
+
+- name: prepublish
+  task: yarn build
+
+- name: postpublish
+  task: rm bin/index.js
