@@ -1,0 +1,12 @@
+bin/**.mjs
+media/
+src/
+.eslintrc
+.gitignore
+.npmrc
+.prettierignore
+.prettierrc.json
+.taskfile.yml
+rollup.config.js
+webmonkey.hooks.mjs
+yarn-error.log
