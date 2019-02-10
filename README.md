@@ -1,4 +1,4 @@
-![Webmonkey](media/logo.png)
+<img src="media/logo.png" alt="Webmonkey" width="200">
 
 > Robust and versatile headless monkey testing for the modern web with reproducible steps, error alerts, strategy sharing and many other good things.
 
