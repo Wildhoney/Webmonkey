@@ -1,4 +1,5 @@
 import path from 'path';
+import process from "process"
 import puppeteer from 'puppeteer';
 import * as R from 'ramda';
 import moment from 'moment';
@@ -44,9 +45,9 @@ export default async function main({
         await utils.runBehaviour({ page, log });
     }
 
-    console.log(queue.size);
     await Promise.all([...queue]);
-
     await browser.close();
     await hooks.destroy(page);
+
+    process.exitCode = R.clamp(0, 1)(queue.size);
 }
