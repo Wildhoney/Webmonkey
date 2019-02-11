@@ -2,7 +2,7 @@
     "name": "webmonkey",
     "version": "0.2.3",
     "description": "Robust and versatile headless monkey testing for the modern web with reproducible steps, error alerts, strategy sharing and many other good things.",
-    "main": "bin/index.mjs",
+    "main": "bin/index.js",
     "bin": {
         "wm": "bin/index.js",
         "webmonkey": "bin/index.js"
