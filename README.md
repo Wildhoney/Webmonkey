@@ -33,11 +33,11 @@ Oftentimes you'll want to authenticate before proceeded with the testing. In cas
 The hooks file **must** be in the `*.mjs` format &ndash; for instance to authenticate on a fictitious website one might implement the following.
 
 ```javascript
-export const create = async (page) => {
+export const create = async page => {
     await page.goto('https://www.example.com/');
-    await page.evaluate(() => document.getElementById('username').focus());
+    await page.focus('#username'));
     await page.keyboard.type('webmonkey');
-    await page.evaluate(() => document.getElementById('password').focus());
+    await page.focus('#password'));
     await page.keyboard.type('monkeynuts');
     await page.keyboard.press('Enter');
     await page.waitForNavigation({ waitUntil: 'networkidle0' });

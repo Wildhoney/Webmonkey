@@ -18,11 +18,6 @@ export default async function main({
     const browser = await puppeteer.launch(options);
     const page = await browser.newPage();
 
-    utils.silenceDialogs(page);
-    utils.exposeFunctions(page);
-    utils.emulateNetworkConditions(page);
-    utils.handleDialogs(page);
-
     page.on('pageerror', async error => {
         output.error(error.toString());
         queue.add(
@@ -39,6 +34,11 @@ export default async function main({
     await hooks.create(page);
     await page.tracing.start({ path: path.join(report, 'timeline.json') });
     await page.goto(url);
+
+    utils.silenceDialogs(page);
+    utils.exposeFunctions(page);
+    utils.emulateNetworkConditions(page);
+    utils.handleDialogs(page);
 
     utils.preventNavigation(page);
 
