@@ -37,7 +37,7 @@ export default async function main(config) {
     utils.preventNavigation(page);
 
     for (const current of R.range(0, config.iterations)) {
-        await utils.runBehaviour({
+        await utils.runAction({
             page,
             output: config.output.info(current + 1, config.iterations)
         });

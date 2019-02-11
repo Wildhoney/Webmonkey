@@ -8,7 +8,7 @@ const defaultNetworkConditions = R.find(R.propEq('label', 'Regular 4G'))(
     presets
 );
 
-export function runBehaviour(params) {
+export function runAction(params) {
     const keys = Object.keys(actions);
     const count = keys.length;
     const name = keys[Math.floor(Math.random() * count)];
