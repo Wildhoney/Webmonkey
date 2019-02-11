@@ -35,9 +35,9 @@ The hooks file **must** be in the `*.mjs` format &ndash; for instance to authent
 ```javascript
 export const create = async page => {
     await page.goto('https://www.example.com/');
-    await page.focus('#username'));
+    await page.focus('#username');
     await page.keyboard.type('webmonkey');
-    await page.focus('#password'));
+    await page.focus('#password');
     await page.keyboard.type('monkeynuts');
     await page.keyboard.press('Enter');
     await page.waitForNavigation({ waitUntil: 'networkidle0' });
