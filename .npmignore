@@ -1,4 +1,5 @@
 bin/**.mjs
+bin/helpers
 media/
 src/
 .eslintrc
