@@ -28,7 +28,7 @@ For other parameters you can type `webmonkey --help` at any time.
 
 ### Authenticating
 
-Oftentimes you'll want to authenticate before proceeded with the testing. In cases such as these `webmonkey` provides a hooks file where you export two optional functions &mdash; `create` and `destroy` &mdash; you can specify the location of the hooks file with the `--hooks` parameter.
+Oftentimes you'll want to authenticate before proceeding with the testing. In cases such as these `webmonkey` provides a hooks file where you export two optional functions &mdash; `create` and `destroy` &mdash; you can specify the location of the hooks file with the `--hooks` parameter.
 
 The hooks file **must** be in the `*.mjs` format &ndash; for instance to authenticate on a fictitious website one might implement the following.
 
