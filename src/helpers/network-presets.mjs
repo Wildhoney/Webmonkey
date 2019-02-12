@@ -28,7 +28,7 @@ export default [
         latency: 100
     },
     {
-        label: 'Godo 3G',
+        label: 'Good 3G',
         offline: false,
         downloadThroughput: (1.5 * 1024 * 1024) / 8,
         uploadThroughput: (750 * 1024) / 8,
