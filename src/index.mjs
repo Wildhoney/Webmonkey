@@ -1,5 +1,4 @@
 import path from 'path';
-import process from 'process';
 import puppeteer from 'puppeteer';
 import * as R from 'ramda';
 import moment from 'moment';
@@ -55,5 +54,5 @@ export default async function main({
     await hooks.destroy(page);
 
     output.summary(iterations, queue.size);
-    process.exitCode = R.clamp(0, 1)(queue.size);
+    return queue.size;
 }

@@ -43,9 +43,9 @@ export function summary(total, errors) {
     console.log(
         `\n${colour('•')}`,
         chalk.gray('Finished running'),
-        chalk.whiteBright(total),
+        chalk.whiteBright(numeral(total).format('0,0')),
         chalk.gray('actions which resulted in'),
-        chalk.whiteBright(errors),
+        chalk.whiteBright(numeral(errors).format('0,0')),
         chalk.gray('errors.'),
         '\n'
     );

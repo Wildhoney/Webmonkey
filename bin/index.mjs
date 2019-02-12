@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 
 import fs from 'fs';
+import process from 'process';
 import path from 'path';
 import figlet from 'figlet';
 import capitalise from 'capitalize';
+import * as R from 'ramda';
 import chalk from 'chalk';
 import minimist from 'minimist';
 import run from '../src/index.mjs';
@@ -34,7 +36,9 @@ async function main() {
     const config = utils.getConfig(argv);
     const hooks = await utils.getHooks(config.hooks);
     const report = await utils.emptyReport(config);
-    return run({ ...config, hooks, output, report });
+    const errors = await run({ ...config, hooks, output, report });
+
+    process.exitCode = R.clamp(0, 1)(errors);
 }
 
 main();
