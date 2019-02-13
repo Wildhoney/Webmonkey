@@ -18,6 +18,39 @@ It's important to remember that [monkey testing](https://en.wikipedia.org/wiki/M
 
 ## Getting Started
 
+Once `webmonkey` has been installed globally, you can begin testing by supplying the `--url` parameter you'd like to test. As that's the only required field, testing begins immediately and proceeds with 50 actions.
+
 ```console
-web@monkey:~$ webmonkey --url https://news.bbc.co.uk/
+foo@bar:~$ webmonkey --url https://news.bbc.co.uk/
 ```
+
+For other parameters you can type `webmonkey --help` at any time.
+
+### Authenticating
+
+Oftentimes you'll want to authenticate before proceeded with the testing. In cases such as these `webmonkey` provides a hooks file where you export two optional functions &mdash; `create` and `destroy` &mdash; you can specify the location of the hooks file with the `--hooks` parameter.
+
+The hooks file **must** be in the `*.mjs` format &ndash; for instance to authenticate on a fictitious website one might implement the following.
+
+```javascript
+export const create = async (page) => {
+    await page.goto('https://www.example.com/');
+    await page.evaluate(() => document.getElementById('username').focus());
+    await page.keyboard.type('webmonkey');
+    await page.evaluate(() => document.getElementById('password').focus());
+    await page.keyboard.type('monkeynuts');
+    await page.keyboard.press('Enter');
+    await page.waitForNavigation({ waitUntil: 'networkidle0' });
+};
+```
+
+## Meet the Team
+
+Currently we have the following set of monkeys that perform various actions on your supplied domain:
+
+* `clicker` performs clicks in random regions of the visible viewport.
+* `networker` cycles through a list of preset network conditions.
+* `scroller` scrolls the viewport to different areas of the page.
+* `sizer` randomly selects a different height and width for the viewport.
+* `toucher` similar to the `clicker` action but instead performs touches.
+* `typer` focuses on random input fields and types random characters.
