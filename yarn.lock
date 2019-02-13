@@ -3307,6 +3307,11 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
+marked@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-0.6.0.tgz#a18d01cfdcf8d15c3c455b71c8329e5e0f01faa1"
+  integrity sha512-HduzIW2xApSXKXJSpCipSxKyvMbwRRa/TwMbepmlZziKdH8548WSoDP4SxzulEKjlo8BE39l+2fwJZuRKOln6g==
+
 matcher@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/matcher/-/matcher-1.1.1.tgz#51d8301e138f840982b338b116bb0c09af62c1c2"
@@ -3497,6 +3502,11 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.1.tgz#30a5864eb3ebb0a66f2ebe6d727af06a09d86e0a"
   integrity sha512-tgp+dl5cGk28utYktBsrFqA7HKgrhgPsg6Z/EfhWI4gl1Hwq8B/GmY/0oXZ6nF8hDVesS/FpnYaD/kOWhYQvyg==
 
+msg-generator@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/msg-generator/-/msg-generator-0.1.1.tgz#223af6d38c918082f20880eff64a9f1ede2dc2fb"
+  integrity sha1-Ijr204yRgILyCIDv9kqfHt4twvs=
+
 multimatch@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/multimatch/-/multimatch-3.0.0.tgz#0e2534cc6bc238d9ab67e1b9cd5fcd85a6dbf70b"
@@ -3605,7 +3615,7 @@ nopt@^4.0.1:
     abbrev "1"
     osenv "^0.1.4"
 
-normalize-newline@~3.0.0:
+normalize-newline@^3.0.0, normalize-newline@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/normalize-newline/-/normalize-newline-3.0.0.tgz#1cbea804aba436001f83938ab21ec039d69ae9d3"
   integrity sha1-HL6oBKukNgAfg5OKsh7AOdaa6dM=
@@ -4108,7 +4118,7 @@ preserve@^0.2.0:
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
   integrity sha1-gV7R9uvGWSb4ZbMQwHE7yzMVzks=
 
-prettier@^1.16.4:
+prettier@^1.16.1, prettier@^1.16.4:
   version "1.16.4"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.16.4.tgz#73e37e73e018ad2db9c76742e2647e21790c9717"
   integrity sha512-ZzWuos7TI5CKUeQAtFd6Zhm2s6EpAD/ZLApIhsF9pRvRtM1RFo61dM/4MSRUA0SuLugA/zgrZD8m0BaY46Og7g==
@@ -4302,6 +4312,22 @@ readdirp@^2.0.0:
     graceful-fs "^4.1.11"
     micromatch "^3.1.10"
     readable-stream "^2.0.2"
+
+readlint@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/readlint/-/readlint-0.7.1.tgz#f2ae2a8596c12b03aa41aa35c98712b1e926e524"
+  integrity sha512-n5wh4Gv5qV0Ipw5vpAT/nrO+eWJge88LDvQweIAmgr3w9/ae5+VpqmKzdeYqIQC5RPonzdHczKN6up99m3ijZw==
+  dependencies:
+    capitalize "^2.0.0"
+    chalk "^2.4.2"
+    esm "^3.1.3"
+    figlet "^1.2.1"
+    find-up "^3.0.0"
+    marked "^0.6.0"
+    msg-generator "^0.1.1"
+    normalize-newline "^3.0.0"
+    prettier "^1.16.1"
+    ramda "^0.26.1"
 
 redent@^2.0.0:
   version "2.0.0"

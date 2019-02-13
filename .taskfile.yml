@@ -4,14 +4,7 @@
 - name: format
   tasks: 
     - prettier --write '{bin,src}/**/*.{mjs,js}'
-    - prettier --write '*.{js,json}'
-
-- name: test/spec
-  tasks:
-    - eslint "{bin,src}/**/**.{mjs,js}"
-    - - prettier --list-different '{bin,src}/**/*.{mjs,js}'
-    - - prettier --list-different '*.{mjs,js,json}'
-    # - - - nyc ava
+    - prettier --write '*.{mjs,js,json}'
 
 - name: coverage
   tasks:
@@ -19,7 +12,12 @@
     - - nyc report --reporter=text-lcov | coveralls
 
 - name: test
-  task: taskfile test/spec
+  tasks:
+    - eslint "{bin,src}/**/**.{mjs,js}"
+    - - prettier --list-different '{bin,src}/**/*.{mjs,js}'
+    - - prettier --list-different '*.{mjs,js,json}'
+    - - - readlint
+    # - - - nyc ava
 
 - name: prepublish
   task: yarn build
