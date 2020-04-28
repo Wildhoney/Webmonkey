@@ -36,6 +36,8 @@
     "devDependencies": {
         "@babel/plugin-syntax-dynamic-import": "^7.8.3",
         "@babel/plugin-syntax-import-meta": "^7.8.3",
+        "@rollup/plugin-babel": "^5.0.0",
+        "@rollup/plugin-replace": "^2.3.2",
         "ava": "^3.8.1",
         "babel-eslint": "^10.1.0",
         "core-js": "^3.6.5",
@@ -53,8 +55,6 @@
         "prettier": "^2.0.5",
         "readlint": "^0.7.2",
         "rollup": "^2.7.3",
-        "rollup-plugin-babel": "^4.4.0",
-        "rollup-plugin-replace": "^2.2.0",
         "sinon": "^9.0.2",
         "taskfile": "^0.10.0"
     },
