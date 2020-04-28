@@ -1,4 +1,8 @@
 media/
+.history/
+.nyc_output/
+reports/
+
 .eslintrc
 .gitignore
 .npmrc
