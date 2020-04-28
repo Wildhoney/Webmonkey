@@ -1,7 +1,6 @@
 bin/**.mjs
 bin/helpers
 media/
-src/
 .eslintrc
 .gitignore
 .npmrc
