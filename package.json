@@ -1,6 +1,6 @@
 {
     "name": "webmonkey",
-    "version": "0.3.6",
+    "version": "0.3.7",
     "description": "Robust and versatile headless monkey testing for the modern web with reproducible steps, error alerts, strategy sharing and many other good things.",
     "main": "./bin/index.mjs",
     "bin": {
