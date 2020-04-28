@@ -43,9 +43,11 @@ export function summary(config, errors) {
         `\n${colour('•')}`,
         chalk.gray('Finished running'),
         chalk.whiteBright(numeral(config.iterations).format('0,0')),
-        chalk.gray('actions which resulted in'),
+        chalk.gray(
+            `${pluralise('action', config.iterations)} which resulted in`
+        ),
         chalk.whiteBright(numeral(errors).format('0,0')),
-        chalk.gray(`${pluralise('error', config.iterations)}.`),
+        chalk.gray(`${pluralise('error', errors)}.`),
         chalk.gray(`\n  Re-run using:`),
         chalk.white(`webmonkey --template ${config.report}/history.json\n`)
     );
