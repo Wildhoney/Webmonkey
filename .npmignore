@@ -1,5 +1,3 @@
-bin/**.mjs
-bin/helpers
 media/
 .eslintrc
 .gitignore
