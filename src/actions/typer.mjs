@@ -3,7 +3,13 @@ import chalk from 'chalk';
 import pluralise from 'pluralize';
 import * as utils from '../utils.mjs';
 
-export default async function typer({ page, output }) {
+export default async function typer({ page, output, template }) {
+    const truncate = Math.random() > 0.15;
+    const length = utils.randomBetween(0, truncate ? 20 : Infinity);
+    const text =
+        template.text ||
+        starwars().substring(0, utils.randomBetween(0, length));
+
     try {
         await page.evaluate(async () => {
             const inputs = [...document.querySelectorAll('input')];
@@ -14,15 +20,12 @@ export default async function typer({ page, output }) {
             input && input.focus();
         });
 
-        const truncate = Math.random() > 0.15;
-        const length = utils.randomBetween(0, truncate ? 20 : Infinity);
-        const text = starwars().substring(0, utils.randomBetween(0, length));
         await page.keyboard.type(text);
 
         const pressEnter = utils.fiftyFifty();
         pressEnter && (await page.keyboard.press('Enter'));
 
-        return void output(
+        output(
             'typer',
             `${chalk.white(text.length)} ${chalk.gray(
                 pluralise('character', text.length)
@@ -30,4 +33,6 @@ export default async function typer({ page, output }) {
             pressEnter ? chalk.whiteBright.italic('enter') : ''
         );
     } catch {}
+
+    return { name: 'typer', meta: { text } };
 }

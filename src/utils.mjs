@@ -1,3 +1,6 @@
+import fs from 'fs';
+import path from 'path';
+import { promisify } from 'util';
 import R from 'ramda';
 import * as actions from './actions/index.mjs';
 import presets from './helpers/network-presets.mjs';
@@ -8,7 +11,9 @@ const defaultNetworkConditions = R.find(R.propEq('label', 'Regular 4G'))(
     presets
 );
 
-export function runAction(params) {
+export function runAction(action, params) {
+    if (!R.isNil(action)) return actions[action](params);
+
     const keys = Object.keys(actions);
     const count = keys.length;
     const name = keys[Math.floor(Math.random() * count)];
@@ -75,4 +80,38 @@ export function randomBetween(min, max) {
 
 export function fiftyFifty() {
     return Math.random() > 0.5;
+}
+
+export async function readTemplate(config) {
+    if (R.isNil(config.template)) return { ...config, actions: null };
+
+    try {
+        const readFile = promisify(fs.readFile);
+        const template = JSON.parse(await readFile(config.template, 'utf-8'));
+
+        return {
+            url: template.url,
+            template: template.actions,
+            iterations: template.actions.length
+        };
+    } catch (error) {
+        config.output.error(error.toString());
+        return { ...config, actions: null };
+    }
+}
+
+export function writeTemplate(config, actions) {
+    const writeFile = promisify(fs.writeFile);
+
+    return writeFile(
+        path.join(config.report, 'history.json'),
+        JSON.stringify(
+            {
+                url: config.url,
+                actions: [...actions]
+            },
+            null,
+            '\t'
+        )
+    );
 }

@@ -23,7 +23,7 @@ async function main() {
     const header = figlet.textSync(capitalise(pkg.name), { font: 'univers' });
     header && console.log(chalk.gray(header));
 
-    if (!argv.url || argv.help) {
+    if ((!argv.url && !argv.template) || argv.help) {
         return void console.log(usage());
     }
 
