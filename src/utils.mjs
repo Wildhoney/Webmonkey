@@ -58,7 +58,7 @@ export function handleDialogs(page) {
 }
 
 export function preventNavigation(page) {
-    page.evaluate(() => {
+    return page.evaluate(() => {
         window.history.pushState = () => {};
         window.history.replaceState = () => {};
 
@@ -69,7 +69,7 @@ export function preventNavigation(page) {
 }
 
 export function allowNavigation(page) {
-    page.evaluate(() => {
+    return page.evaluate(() => {
         window.onbeforeunload = () => {};
     });
 }
