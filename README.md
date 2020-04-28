@@ -14,7 +14,7 @@
 
 It's important to remember that [monkey testing](https://en.wikipedia.org/wiki/Monkey_testing) should be used in conjunction with smarter tests such as [integration tests](https://en.wikipedia.org/wiki/Integration_testing).
 
-![Screenshot](media/screenshot.png)
+![Screenshot](media/screenshot-0.3.5.png)
 
 ## Getting Started
 
