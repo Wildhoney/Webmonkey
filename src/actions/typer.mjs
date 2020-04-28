@@ -25,7 +25,7 @@ export default async function typer({ page, output }) {
         return void output(
             'typer',
             `${chalk.white(text.length)} ${chalk.gray(
-                pluralise('characters', text.length)
+                pluralise('character', text.length)
             )}`,
             pressEnter ? chalk.whiteBright.italic('enter') : ''
         );

@@ -57,19 +57,15 @@ export function preventNavigation(page) {
         window.history.pushState = () => {};
         window.history.replaceState = () => {};
 
-        window.wm = {
-            preventNavigation: () => {
-                return 'You are not going anywhere...';
-            }
+        window.onbeforeunload = () => {
+            return 'You are not going anywhere...';
         };
-
-        window.addEventListener('beforeunload', window.wm.preventNavigation);
     });
 }
 
 export function allowNavigation(page) {
     page.evaluate(() => {
-        window.removeEventListener('beforeunload', window.wm.preventNavigation);
+        window.onbeforeunload = () => {};
     });
 }
 

@@ -1,6 +1,7 @@
 import chalk from 'chalk';
 import numeral from 'numeral';
 import capitalise from 'capitalize';
+import pluralise from 'pluralize';
 
 export const highlight =
     chalk.level > 1 ? chalk.hex('#ffd2e8') : chalk.magentaBright;
@@ -46,7 +47,7 @@ export function summary(total, errors) {
         chalk.whiteBright(numeral(total).format('0,0')),
         chalk.gray('actions which resulted in'),
         chalk.whiteBright(numeral(errors).format('0,0')),
-        chalk.gray('errors.'),
+        chalk.gray(`${pluralise('error', total)}.`),
         '\n'
     );
 }
