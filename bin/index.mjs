@@ -5,7 +5,7 @@ import process from 'process';
 import path from 'path';
 import figlet from 'figlet';
 import capitalise from 'capitalize';
-import * as R from 'ramda';
+import R from 'ramda';
 import chalk from 'chalk';
 import minimist from 'minimist';
 import run from '../src/index.mjs';

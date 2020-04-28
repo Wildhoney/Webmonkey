@@ -1,6 +1,6 @@
 import path from 'path';
 import process from 'process';
-import * as R from 'ramda';
+import R from 'ramda';
 import humps from 'humps';
 import moment from 'moment';
 import mkdir from 'mkdirp';

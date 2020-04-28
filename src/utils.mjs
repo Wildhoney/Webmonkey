@@ -1,4 +1,4 @@
-import * as R from 'ramda';
+import R from 'ramda';
 import * as actions from './actions/index.mjs';
 import presets from './helpers/network-presets.mjs';
 
@@ -56,9 +56,20 @@ export function preventNavigation(page) {
     page.evaluate(() => {
         window.history.pushState = () => {};
         window.history.replaceState = () => {};
-        window.onbeforeunload = () => {
-            return 'You are not going anywhere...';
+
+        window.wm = {
+            preventNavigation: () => {
+                return 'You are not going anywhere...';
+            }
         };
+
+        window.addEventListener('beforeunload', window.wm.preventNavigation);
+    });
+}
+
+export function allowNavigation(page) {
+    page.evaluate(() => {
+        window.removeEventListener('beforeunload', window.wm.preventNavigation);
     });
 }
 

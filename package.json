@@ -48,6 +48,7 @@
         "eslint-plugin-promise": "^4.0.1",
         "eslint-plugin-standard": "^4.0.0",
         "esm": "^3.2.4",
+        "marky": "^1.2.1",
         "nyc": "13.2.0",
         "prettier": "^1.16.4",
         "readlint": "^0.7.1",

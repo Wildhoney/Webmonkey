@@ -1,8 +1,8 @@
 import path from 'path';
 import puppeteer from 'puppeteer';
-import * as R from 'ramda';
+import R from 'ramda';
 import moment from 'moment';
-import * as utils from './utils';
+import * as utils from './utils.mjs';
 
 const queue = new Set();
 
