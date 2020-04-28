@@ -3,6 +3,7 @@ media/
 .nyc_output/
 reports/
 
+.travis.yml
 .eslintrc
 .gitignore
 .npmrc
