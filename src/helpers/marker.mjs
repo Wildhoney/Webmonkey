@@ -6,9 +6,9 @@ export default function clickerMarker(page, colour, x, y) {
 
             const node = document.createElement('div');
             node.style.all = 'initial';
-            node.style.transform = `translate(${x + scrollTop - 2}px, ${y +
-                scrollLeft -
-                2}px)`;
+            node.style.transform = `translate(${x + scrollTop - 2}px, ${
+                y + scrollLeft - 2
+            }px)`;
             node.style.width = '4px';
             node.style.height = '4px';
             node.style.backgroundColor = colour;

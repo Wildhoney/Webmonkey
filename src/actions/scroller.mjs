@@ -4,7 +4,7 @@ import * as utils from '../utils.mjs';
 export default async function scroller({ page, output, template }) {
     const { height } = await page.evaluate(() => ({
         height: document.documentElement.scrollHeight - window.innerHeight,
-        width: document.documentElement.scrollWidth - window.innerWidth
+        width: document.documentElement.scrollWidth - window.innerWidth,
     }));
 
     const top = template.top || utils.randomBetween(0, height);
@@ -19,7 +19,7 @@ export default async function scroller({ page, output, template }) {
                         : window.scrollTo;
                 scroll({
                     top,
-                    left
+                    left,
                 });
             },
             { top, left }

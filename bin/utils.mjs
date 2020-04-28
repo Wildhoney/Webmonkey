@@ -11,12 +11,12 @@ export function getConfig(argv) {
         hooks: path.resolve(process.cwd(), 'webmonkey.hooks.mjs'),
         reports: path.resolve(path.join(process.cwd(), 'reports')),
         debug: false,
-        iterations: 50
+        iterations: 50,
     };
     return humps.camelizeKeys({
         ...defaults,
         ...argv,
-        hooks: argv.hooks ? path.resolve(argv.hooks) : defaults.hooks
+        hooks: argv.hooks ? path.resolve(argv.hooks) : defaults.hooks,
     });
 }
 
@@ -32,13 +32,13 @@ export async function emptyReport(config) {
 export async function getHooks(filepath) {
     const defaults = {
         create: R.identity,
-        destroy: R.identity
+        destroy: R.identity,
     };
 
     try {
         return {
             ...defaults,
-            ...(await import(filepath))
+            ...(await import(filepath)),
         };
     } catch {
         return defaults;

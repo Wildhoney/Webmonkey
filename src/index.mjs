@@ -15,7 +15,7 @@ export default async function main(config) {
 
     const { url, template, iterations } = await utils.readTemplate(config);
 
-    page.on('pageerror', async error => {
+    page.on('pageerror', async (error) => {
         config.output.error(error.toString());
         queue.add(
             page.screenshot({
@@ -23,14 +23,14 @@ export default async function main(config) {
                     config.report,
                     'screenshots',
                     `${moment().format('HH:mm:ss')}.png`
-                )
+                ),
             })
         );
     });
 
     await config.hooks.create(page, config);
     await page.tracing.start({
-        path: path.join(config.report, 'timeline.json')
+        path: path.join(config.report, 'timeline.json'),
     });
     await page.goto(url);
 
@@ -46,7 +46,7 @@ export default async function main(config) {
         const action = await utils.runAction(name, {
             page,
             output: config.output.info(current + 1, config.iterations),
-            template: R.isNil(name) ? {} : template[current].meta
+            template: R.isNil(name) ? {} : template[current].meta,
         });
         templates.add(action);
         await Promise.all([...queue]);

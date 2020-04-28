@@ -25,9 +25,7 @@ export function info(current, total) {
         console.log(
             chalk.gray('•'),
             chalk.whiteBright(
-                numeral(current)
-                    .format('0,0')
-                    .padEnd(String(total_).length)
+                numeral(current).format('0,0').padEnd(String(total_).length)
             ),
             chalk.gray(`(of ${total_})`),
             chalk.gray('•'),

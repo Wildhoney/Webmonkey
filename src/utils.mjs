@@ -5,7 +5,7 @@ import R from 'ramda';
 import * as actions from './actions/index.mjs';
 import presets from './helpers/network-presets.mjs';
 
-const getCDPSession = R.once(page => page.target().createCDPSession());
+const getCDPSession = R.once((page) => page.target().createCDPSession());
 
 const defaultNetworkConditions = R.find(R.propEq('label', 'Regular 4G'))(
     presets
@@ -32,7 +32,7 @@ export function exposeFunctions(page) {
 export function pageDimensions(page) {
     return page.evaluate(() => ({
         height: window.innerHeight,
-        width: window.innerWidth
+        width: window.innerWidth,
     }));
 }
 
@@ -48,12 +48,12 @@ export async function emulateNetworkConditions(
 }
 
 export function handleDialogs(page) {
-    page.on('dialog', dialog => {
+    page.on('dialog', (dialog) => {
         if (dialog.type() === 'beforeunload') {
-            return void dialog.dismiss();
+            return dialog.dismiss();
         }
         const f = fiftyFifty() ? 'accept' : 'dismiss';
-        return void dialog[f];
+        return dialog[f];
     });
 }
 
@@ -92,7 +92,7 @@ export async function readTemplate(config) {
         return {
             url: template.url,
             template: template.actions,
-            iterations: template.actions.length
+            iterations: template.actions.length,
         };
     } catch (error) {
         config.output.error(error.toString());
@@ -108,7 +108,7 @@ export function writeTemplate(config, actions) {
         JSON.stringify(
             {
                 url: config.url,
-                actions: [...actions]
+                actions: [...actions],
             },
             null,
             '\t'

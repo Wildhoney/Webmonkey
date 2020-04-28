@@ -6,19 +6,19 @@ export default {
     output: {
         file: 'bin/index.js',
         format: 'cjs',
-        banner: '#!/usr/bin/env node'
+        banner: '#!/usr/bin/env node',
     },
     plugins: [
         replace({
             delimiters: ['', ''],
-            '#!/usr/bin/env node': ''
+            '#!/usr/bin/env node': '',
         }),
         babel({
             exclude: 'node_modules/**',
             plugins: [
                 '@babel/plugin-syntax-import-meta',
-                '@babel/plugin-syntax-dynamic-import'
-            ]
-        })
-    ]
+                '@babel/plugin-syntax-dynamic-import',
+            ],
+        }),
+    ],
 };
