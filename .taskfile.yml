@@ -1,6 +1,3 @@
-- name: build
-  task: rollup -c rollup.config.js
-
 - name: format
   tasks:
       - prettier --write '{bin,src}/**/*.{mjs,js}'
@@ -18,9 +15,3 @@
       - - prettier --list-different '*.{mjs,js,json,yml}'
       - - - readlint
       # - - - nyc ava
-
-- name: prepublish
-  task: yarn build
-
-- name: postpublish
-  task: rm bin/index.js
