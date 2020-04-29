@@ -1,4 +1,4 @@
-<img src="media/logo.png" alt="Webmonkey" width="350">
+<img src="media/logo.png" alt="Webmonkey" width="350" />
 
 > Robust and versatile headless monkey testing for the modern web with reproducible steps, error alerts, strategy sharing and many other good things.
 
@@ -33,7 +33,7 @@ Oftentimes you'll want to authenticate before proceeding with the testing. In ca
 The hooks file **must** be in the `*.mjs` format &ndash; for instance to authenticate on a fictitious website one might implement the following.
 
 ```javascript
-export const create = async page => {
+export const create = async (page) => {
     await page.goto('https://www.example.com/');
     await page.focus('#username');
     await page.keyboard.type('webmonkey');
@@ -48,9 +48,40 @@ export const create = async page => {
 
 Currently we have the following set of monkeys that perform various actions on your supplied domain:
 
-* `clicker` performs clicks in random regions of the visible viewport.
-* `networker` cycles through a list of preset network conditions.
-* `scroller` scrolls the viewport to different areas of the page.
-* `sizer` randomly selects a different height and width for the viewport.
-* `toucher` similar to the `clicker` action but instead performs touches.
-* `typer` focuses on random input fields and types random characters.
+<table>
+    <tr>
+        <td><img src="media/team/clicker.png" alt="Webmonkey" width="150" /></td>
+        <td><strong>Clicker</strong></td>
+        <td>Performs clicks in random regions of the visible viewport.</td>
+    </tr>
+    <tr>
+        <td><img src="media/team/networker.png" alt="Webmonkey" width="150" /></td>
+        <td><strong>Networker</strong></td>
+        <td>Cycles through a list of preset network conditions.</td>
+    </tr>
+    <tr>
+        <td><img src="media/team/scroller.png" alt="Webmonkey" width="150" /></td>
+        <td><strong>Scroller</strong></td>
+        <td>Scrolls the viewport to different areas of the page.</td>
+    </tr>
+    <tr>
+        <td><img src="media/team/sizer.png" alt="Webmonkey" width="150" /></td>
+        <td><strong>Sizer</strong></td>
+        <td>Randomly selects a different height and width for the viewport.</td>
+    </tr>
+    <tr>
+        <td><img src="media/team/toucher.png" alt="Webmonkey" width="150" /></td>
+        <td><strong>Toucher</strong></td>
+        <td>Similar to the <code>clicker</code> action but instead performs touches.</td>
+    </tr>
+    <tr>
+        <td><img src="media/team/typer.png" alt="Webmonkey" width="150" /></td>
+        <td><strong>Typer</strong></td>
+        <td>Focuses on random input fields and types random characters.</td>
+    </tr>
+    <tr>
+        <td><img src="media/team/refresher.png" alt="Webmonkey" width="150" /></td>
+        <td><strong>Refresher</strong></td>
+        <td>Refreshes the page occasionally.</td>
+    </tr>
+</table>
