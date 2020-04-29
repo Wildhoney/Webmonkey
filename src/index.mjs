@@ -9,8 +9,6 @@ const queue = new Set();
 const templates = new Set();
 
 export default async function main(config) {
-    const { url, template, iterations } = await utils.readTemplate(config);
-
     const options = config.debug ? { headless: false, devtools: true } : {};
     const browser = await puppeteer.launch(options);
     const page = await browser.newPage();
@@ -32,7 +30,7 @@ export default async function main(config) {
     await page.tracing.start({
         path: path.join(config.report, 'timeline.json'),
     });
-    await page.goto(url);
+    await page.goto(config.url);
 
     utils.silenceDialogs(page);
     utils.exposeFunctions(page);
@@ -40,13 +38,15 @@ export default async function main(config) {
     utils.handleDialogs(page);
     utils.preventNavigation(page);
 
-    for (const current of R.range(0, iterations)) {
-        const name = R.isNil(template) ? null : template[current].name;
+    for (const current of R.range(0, config.iterations)) {
+        const name = R.isNil(config.template)
+            ? null
+            : config.template[current].name;
 
         const action = await utils.runAction(name, {
             page,
             output: config.output.info(current + 1, config.iterations),
-            template: R.isNil(name) ? {} : template[current].meta,
+            template: R.isNil(name) ? {} : config.template[current].meta,
         });
         templates.add(action);
         await Promise.all([...queue]);

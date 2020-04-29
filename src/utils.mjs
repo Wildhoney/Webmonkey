@@ -82,24 +82,6 @@ export function fiftyFifty() {
     return Math.random() > 0.5;
 }
 
-export async function readTemplate(config) {
-    if (R.isNil(config.template)) return { ...config, actions: null };
-
-    try {
-        const readFile = promisify(fs.readFile);
-        const template = JSON.parse(await readFile(config.template, 'utf-8'));
-
-        return {
-            url: template.url,
-            template: template.actions,
-            iterations: template.actions.length,
-        };
-    } catch (error) {
-        config.output.error(error.toString());
-        return { ...config, actions: null };
-    }
-}
-
 export function writeTemplate(config, actions) {
     const writeFile = promisify(fs.writeFile);
 
