@@ -11,13 +11,21 @@ const defaultNetworkConditions = R.find(R.propEq('label', 'Regular 4G'))(
     presets
 );
 
-export function runAction(action, params) {
-    if (!R.isNil(action)) return actions[action](params);
+export function runAction(action, params, strategy) {
+    try {
+        if (!R.isNil(action)) return actions[action](params);
 
-    const keys = Object.keys(actions);
-    const count = keys.length;
-    const name = keys[Math.floor(Math.random() * count)];
-    return actions[name](params);
+        const keys = Object.keys(actions).reduce((actions, action) => {
+            const count = R.isNil(strategy[action]) ? 1 : strategy[action];
+            return [...actions, R.repeat(action, count)].flat();
+        }, []);
+
+        const count = keys.length;
+        const name = keys[Math.floor(Math.random() * count)];
+        return actions[name](params);
+    } catch {
+        throw new Error('Unable to find any actions available to run.');
+    }
 }
 
 export function silenceDialogs(page) {

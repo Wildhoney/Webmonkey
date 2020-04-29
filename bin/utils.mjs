@@ -20,12 +20,24 @@ export async function getConfig(argv) {
         debug: argv.debug || false,
         iterations: template.iterations || argv.iterations || 50,
         template: R.isEmpty(template) ? null : template.actions,
+        strategy: argv.strategy ? getStrategies(argv.strategy) : {},
     };
 
     return humps.camelizeKeys({
         ...config,
         hooks: argv.hooks ? path.resolve(argv.hooks) : config.hooks,
     });
+}
+
+function getStrategies(strategy) {
+    const f = R.compose(
+        R.map(Number),
+        R.fromPairs(),
+        R.map(R.split('=')),
+        R.split(',')
+    );
+
+    return f(strategy);
 }
 
 export async function emptyReport(config) {

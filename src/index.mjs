@@ -43,13 +43,26 @@ export default async function main(config) {
             ? null
             : config.template[current].name;
 
-        const action = await utils.runAction(name, {
-            page,
-            output: config.output.info(current + 1, config.iterations),
-            template: R.isNil(name) ? {} : config.template[current].meta,
-        });
-        templates.add(action);
-        await Promise.all([...queue]);
+        try {
+            const action = await utils.runAction(
+                name,
+                {
+                    page,
+                    output: config.output.info(current + 1, config.iterations),
+                    template: R.isNil(name)
+                        ? {}
+                        : config.template[current].meta,
+                },
+                config.strategy
+            );
+
+            templates.add(action);
+            await Promise.all([...queue]);
+        } catch (error) {
+            config.output.error(error.toString());
+            process.exitCode = 1;
+            process.exit();
+        }
     }
 
     await utils.writeTemplate(config, templates);
