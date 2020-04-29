@@ -1,4 +1,4 @@
-<img src="media/logo.svg" alt="Webmonkey" width="350" />
+<img src="media/logo.png" alt="Webmonkey" width="350" />
 
 > Robust and versatile headless monkey testing for the modern web with reproducible steps, error alerts, strategy sharing and many other good things.
 
@@ -14,7 +14,7 @@
 
 It's important to remember that [monkey testing](https://en.wikipedia.org/wiki/Monkey_testing) should be used in conjunction with smarter tests such as [integration tests](https://en.wikipedia.org/wiki/Integration_testing).
 
-![Screenshot](media/screenshot-0.3.5.svg)
+![Screenshot](media/screenshot-0.3.5.png)
 
 ## Getting Started
 
