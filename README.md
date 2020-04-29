@@ -26,6 +26,10 @@ foo@bar:~$ webmonkey --url https://news.bbc.co.uk/
 
 For other parameters you can type `webmonkey --help` at any time.
 
+### Strategy
+
+By default each action has an equal chance of being chosen at random to be run. However you can tweak this by passing the `--strategy` parameter which allows for a comma separated list of actions followed by how likely they are to be chosen &mdash; for example `--strategy clicker=10,reloader=0` would make clicker 10 times as likely to run than any other action &ndash; aside from reloader which will never run.
+
 ### Authenticating
 
 Oftentimes you'll want to authenticate before proceeding with the testing. In cases such as these `webmonkey` provides a hooks file where you export two optional functions &mdash; `create` and `destroy` &mdash; you can specify the location of the hooks file with the `--hooks` parameter.
