@@ -1,4 +1,4 @@
-<img src="media/logo.png" alt="Webmonkey" width="350" />
+<img src="media/logo.svg" alt="Webmonkey" width="350" />
 
 > Robust and versatile headless monkey testing for the modern web with reproducible steps, error alerts, strategy sharing and many other good things.
 
@@ -14,7 +14,7 @@
 
 It's important to remember that [monkey testing](https://en.wikipedia.org/wiki/Monkey_testing) should be used in conjunction with smarter tests such as [integration tests](https://en.wikipedia.org/wiki/Integration_testing).
 
-![Screenshot](media/screenshot-0.3.5.png)
+![Screenshot](media/screenshot-0.3.5.svg)
 
 ## Getting Started
 
@@ -50,37 +50,37 @@ Currently we have the following set of monkeys that perform various actions on y
 
 <table>
     <tr>
-        <td><img src="media/team/clicker.png" alt="Webmonkey" width="150" /></td>
+        <td><img src="media/team/clicker.svg" alt="Webmonkey" width="150" /></td>
         <td><strong>Clicker</strong></td>
         <td>Performs clicks in random regions of the visible viewport.</td>
     </tr>
     <tr>
-        <td><img src="media/team/networker.png" alt="Webmonkey" width="150" /></td>
+        <td><img src="media/team/networker.svg" alt="Webmonkey" width="150" /></td>
         <td><strong>Networker</strong></td>
         <td>Cycles through a list of preset network conditions.</td>
     </tr>
     <tr>
-        <td><img src="media/team/scroller.png" alt="Webmonkey" width="150" /></td>
+        <td><img src="media/team/scroller.svg" alt="Webmonkey" width="150" /></td>
         <td><strong>Scroller</strong></td>
         <td>Scrolls the viewport to different areas of the page.</td>
     </tr>
     <tr>
-        <td><img src="media/team/sizer.png" alt="Webmonkey" width="150" /></td>
+        <td><img src="media/team/sizer.svg" alt="Webmonkey" width="150" /></td>
         <td><strong>Sizer</strong></td>
         <td>Randomly selects a different height and width for the viewport.</td>
     </tr>
     <tr>
-        <td><img src="media/team/toucher.png" alt="Webmonkey" width="150" /></td>
+        <td><img src="media/team/toucher.svg" alt="Webmonkey" width="150" /></td>
         <td><strong>Toucher</strong></td>
         <td>Similar to the <code>clicker</code> action but instead performs touches.</td>
     </tr>
     <tr>
-        <td><img src="media/team/typer.png" alt="Webmonkey" width="150" /></td>
+        <td><img src="media/team/typer.svg" alt="Webmonkey" width="150" /></td>
         <td><strong>Typer</strong></td>
         <td>Focuses on random input fields and types random characters.</td>
     </tr>
     <tr>
-        <td><img src="media/team/refresher.png" alt="Webmonkey" width="150" /></td>
+        <td><img src="media/team/refresher.svg" alt="Webmonkey" width="150" /></td>
         <td><strong>Refresher</strong></td>
         <td>Refreshes the page occasionally.</td>
     </tr>
