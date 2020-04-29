@@ -9,11 +9,11 @@ const queue = new Set();
 const templates = new Set();
 
 export default async function main(config) {
+    const { url, template, iterations } = await utils.readTemplate(config);
+
     const options = config.debug ? { headless: false, devtools: true } : {};
     const browser = await puppeteer.launch(options);
     const page = await browser.newPage();
-
-    const { url, template, iterations } = await utils.readTemplate(config);
 
     page.on('pageerror', async (error) => {
         config.output.error(error.toString());

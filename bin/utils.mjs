@@ -9,10 +9,13 @@ export function getConfig(argv) {
     const defaults = {
         url: 'https://www.google.com/',
         hooks: path.resolve(process.cwd(), 'webmonkey.hooks.mjs'),
-        reports: path.resolve(path.join(process.cwd(), 'reports')),
+        reports: path.resolve(
+            argv.directory || path.join(process.cwd(), 'reports')
+        ),
         debug: false,
         iterations: 50,
     };
+
     return humps.camelizeKeys({
         ...defaults,
         ...argv,
