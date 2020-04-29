@@ -50,37 +50,37 @@ Currently we have the following set of monkeys that perform various actions on y
 
 <table>
     <tr>
-        <td><img src="media/team/clicker.svg" alt="Webmonkey" width="150" /></td>
+        <td><img src="media/team/clicker.svg" alt="Webmonkey" width="50" /></td>
         <td><strong>Clicker</strong></td>
         <td>Performs clicks in random regions of the visible viewport.</td>
     </tr>
     <tr>
-        <td><img src="media/team/networker.svg" alt="Webmonkey" width="150" /></td>
+        <td><img src="media/team/networker.svg" alt="Webmonkey" width="50" /></td>
         <td><strong>Networker</strong></td>
         <td>Cycles through a list of preset network conditions.</td>
     </tr>
     <tr>
-        <td><img src="media/team/scroller.svg" alt="Webmonkey" width="150" /></td>
+        <td><img src="media/team/scroller.svg" alt="Webmonkey" width="50" /></td>
         <td><strong>Scroller</strong></td>
         <td>Scrolls the viewport to different areas of the page.</td>
     </tr>
     <tr>
-        <td><img src="media/team/sizer.svg" alt="Webmonkey" width="150" /></td>
+        <td><img src="media/team/sizer.svg" alt="Webmonkey" width="50" /></td>
         <td><strong>Sizer</strong></td>
         <td>Randomly selects a different height and width for the viewport.</td>
     </tr>
     <tr>
-        <td><img src="media/team/toucher.svg" alt="Webmonkey" width="150" /></td>
+        <td><img src="media/team/toucher.svg" alt="Webmonkey" width="50" /></td>
         <td><strong>Toucher</strong></td>
         <td>Similar to the <code>clicker</code> action but instead performs touches.</td>
     </tr>
     <tr>
-        <td><img src="media/team/typer.svg" alt="Webmonkey" width="150" /></td>
+        <td><img src="media/team/typer.svg" alt="Webmonkey" width="50" /></td>
         <td><strong>Typer</strong></td>
         <td>Focuses on random input fields and types random characters.</td>
     </tr>
     <tr>
-        <td><img src="media/team/refresher.svg" alt="Webmonkey" width="150" /></td>
+        <td><img src="media/team/refresher.svg" alt="Webmonkey" width="50" /></td>
         <td><strong>Refresher</strong></td>
         <td>Refreshes the page occasionally.</td>
     </tr>
