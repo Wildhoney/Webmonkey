@@ -23,16 +23,17 @@ async function main() {
     const header = figlet.textSync(capitalise(pkg.name), { font: 'univers' });
     header && console.log(chalk.gray(header));
 
+    console.log(
+        '\n',
+        chalk.gray('Version:'.padStart(header ? 120 : 0)),
+        pkg.version,
+        '\n\n'
+    );
+
     if ((!argv.url && !argv.template) || argv.help) {
         return console.log(usage());
     }
 
-    console.log(
-        '\n',
-        chalk.gray('Version:'.padStart(header ? 121 : 0)),
-        pkg.version,
-        '\n\n'
-    );
     const config = await utils.getConfig(argv);
 
     const hooks = await utils.getHooks(config.hooks);
