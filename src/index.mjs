@@ -1,7 +1,6 @@
 import path from 'path';
 import puppeteer from 'puppeteer';
 import R from 'ramda';
-import moment from 'moment';
 import * as utils from './utils.mjs';
 
 const queue = new Set();
@@ -15,15 +14,19 @@ export default async function main(config) {
 
     page.on('pageerror', async (error) => {
         config.output.error(error.toString());
-        queue.add(
-            page.screenshot({
-                path: path.join(
-                    config.report,
-                    'screenshots',
-                    `${moment().format('HH:mm:ss')}.png`
-                ),
-            })
-        );
+        queue.add(utils.takeScreenshot(page, config));
+    });
+
+    page.on('requestfinished', async (request) => {
+        const response = request.response();
+        if (!response) return;
+
+        const status = response.status();
+        const isValid = status >= 200 && status < 300;
+
+        if (isValid) return;
+        config.output.error(`${request.url()} failed with ${request.status}.`);
+        queue.add(utils.takeScreenshot(page, config));
     });
 
     await config.hooks.create(page, config);

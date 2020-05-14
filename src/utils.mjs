@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { promisify } from 'util';
 import R from 'ramda';
+import moment from 'moment';
 import * as actions from './actions/index.mjs';
 import presets from './helpers/network-presets.mjs';
 
@@ -104,4 +105,14 @@ export function writeTemplate(config, actions) {
             '\t'
         )
     );
+}
+
+export function takeScreenshot(page, config) {
+    page.screenshot({
+        path: path.join(
+            config.report,
+            'screenshots',
+            `${moment().format('HH:mm:ss')}.png`
+        ),
+    });
 }
