@@ -5,7 +5,7 @@
 
 - name: coverage
   tasks:
-      - taskfile test/spec
+      - taskfile test
       - - nyc report --reporter=text-lcov | coveralls
 
 - name: test
@@ -14,4 +14,4 @@
       - - prettier --list-different '{bin,src}/**/*.{mjs,js}'
       - - prettier --list-different '*.{mjs,js,json,yml}'
       - - - readlint
-      # - - - nyc ava
+      - - - - nyc ava
