@@ -5,6 +5,5 @@ script:
     - npm i
     - yarn
     - yarn test
-    - yarn coverage
 
 after_success: yarn run coverage
