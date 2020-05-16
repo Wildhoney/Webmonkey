@@ -30,6 +30,11 @@ export default function usage() {
     )}    Specify how likely an action is to run ${chalk.gray(
         '(example: --strategy clicker=10,reloader=0)'
     )}.
+    ${chalk.gray(
+        '--warnings'
+    )}    Whether to show the request warnings ${chalk.gray(
+        '(default: false)'
+    )}.
     ${chalk.gray('--iterations')}  Number of actions to perform ${chalk.gray(
         '(default: 50)'
     )}.

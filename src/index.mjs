@@ -32,6 +32,9 @@ export default async function main(config) {
 
         if (isValid) return;
 
+        config.warnings &&
+            config.output.warning(`${request.url()} failed with ${status}.`);
+
         queue.add(utils.takeScreenshot(page, config));
         summary.set('warnings', summary.get('warnings') + 1);
     });

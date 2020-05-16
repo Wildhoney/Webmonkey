@@ -18,6 +18,7 @@ export async function getConfig(argv) {
             argv.reports ||
             path.resolve(argv.directory || path.join(process.cwd(), 'reports')),
         debug: argv.debug || false,
+        warnings: argv.warnings || false,
         iterations: template.iterations || argv.iterations || 50,
         template: R.isEmpty(template) ? null : template.actions,
         strategy: argv.strategy ? getStrategies(argv.strategy) : {},
