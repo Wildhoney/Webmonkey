@@ -5,6 +5,11 @@ import * as utils from './utils.mjs';
 
 const queue = new Set();
 
+const summary = new Map([
+    ['errors', 0],
+    ['warnings', 0],
+]);
+
 const templates = new Set();
 
 export default async function main(config) {
@@ -15,6 +20,7 @@ export default async function main(config) {
     page.on('pageerror', async (error) => {
         config.output.error(error.toString());
         queue.add(utils.takeScreenshot(page, config));
+        summary.set('errors', summary.get('errors') + 1);
     });
 
     page.on('requestfinished', async (request) => {
@@ -25,8 +31,9 @@ export default async function main(config) {
         const isValid = status >= 200 && status < 300;
 
         if (isValid) return;
-        config.output.error(`${request.url()} failed with ${request.status}.`);
+
         queue.add(utils.takeScreenshot(page, config));
+        summary.set('warnings', summary.get('warnings') + 1);
     });
 
     await config.hooks.create(page, config);
@@ -69,11 +76,11 @@ export default async function main(config) {
     }
 
     await utils.writeTemplate(config, templates);
-
     await page.tracing.stop();
     await browser.close();
     await config.hooks.destroy(page, config);
 
-    config.output.summary(config, queue.size);
-    return queue.size;
+    config.output.summary(config, summary);
+
+    return summary.get('errors');
 }

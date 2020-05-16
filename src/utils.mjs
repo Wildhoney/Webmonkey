@@ -108,7 +108,7 @@ export function writeTemplate(config, actions) {
 }
 
 export function takeScreenshot(page, config) {
-    page.screenshot({
+    return page.screenshot({
         path: path.join(
             config.report,
             'screenshots',

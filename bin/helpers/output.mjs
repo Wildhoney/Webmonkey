@@ -18,6 +18,18 @@ export function error(message) {
     );
 }
 
+export function warning(message) {
+    const colour = chalk.level > 1 ? chalk.hex('#e6ad00') : chalk.yellowBright;
+
+    console.log(
+        '\n',
+        colour.italic.underline('Warning'),
+        chalk.gray('•'),
+        chalk.whiteBright(message),
+        '\n'
+    );
+}
+
 export function info(current, total) {
     const total_ = numeral(total).format('0,0');
 
@@ -36,8 +48,16 @@ export function info(current, total) {
     };
 }
 
-export function summary(config, errors) {
-    const colour = errors === 0 ? chalk.greenBright : chalk.redBright;
+export function summary(config, summary) {
+    const errors = summary.get('errors');
+    const warnings = summary.get('warnings');
+
+    const colour =
+        errors === 0 && warnings === 0
+            ? chalk.greenBright
+            : errors > 1
+            ? chalk.redBright
+            : chalk.yellowBright;
 
     console.log(
         `\n${colour('•')}`,
@@ -46,8 +66,14 @@ export function summary(config, errors) {
         chalk.gray(
             `${pluralise('action', config.iterations)} which resulted in`
         ),
+
         chalk.whiteBright(numeral(errors).format('0,0')),
-        chalk.gray(`${pluralise('error', errors)}.`),
+        chalk.gray(`${pluralise('error', errors)}`),
+
+        chalk.gray('and'),
+        chalk.whiteBright(numeral(warnings).format('0,0')),
+        chalk.gray(`${pluralise('warning', warnings)}.`),
+
         chalk.gray(`\n  Re-run using:`),
         chalk.white(`webmonkey --template ${config.report}/history.json\n`)
     );
