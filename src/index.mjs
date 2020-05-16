@@ -85,5 +85,6 @@ export default async function main(config) {
 
     config.output.summary(config, summary);
 
+    await Promise.all([...queue]);
     return summary.get('errors');
 }
