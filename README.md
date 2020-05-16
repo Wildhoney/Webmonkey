@@ -8,8 +8,6 @@
 &nbsp;
 ![License MIT](http://img.shields.io/badge/license-mit-lightgrey.svg?style=for-the-badge)
 &nbsp;
-![Coveralls](https://img.shields.io/coveralls/Wildhoney/Webmonkey.svg?style=for-the-badge)
-&nbsp;
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=for-the-badge)](https://github.com/prettier/prettier)
 
 It's important to remember that [monkey testing](https://en.wikipedia.org/wiki/Monkey_testing) should be used in conjunction with smarter tests such as [integration tests](https://en.wikipedia.org/wiki/Integration_testing).
