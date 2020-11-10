@@ -1,11 +1,11 @@
 {
     "name": "webmonkey",
-    "version": "0.4.1",
+    "version": "0.5.0",
     "description": "Robust and versatile headless monkey testing for the modern web with reproducible steps, error alerts, strategy sharing and many other good things.",
     "main": "./bin/index.mjs",
     "bin": {
-        "wm": "./bin/index.mjs",
-        "webmonkey": "./bin/index.mjs"
+        "wm": "bin/index.mjs",
+        "webmonkey": "bin/index.mjs"
     },
     "repository": "git@github.com:Wildhoney/Webmonkey.git",
     "author": "Adam Timberlake <adam.timberlake@gmail.com>",
