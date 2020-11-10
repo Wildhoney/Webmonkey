@@ -16,6 +16,12 @@
         "test": "taskfile test",
         "coverage": "taskfile coverage"
     },
+    "husky": {
+        "hooks": {
+            "pre-commit": "yarn format && yarn test",
+            "pre-push": "yarn format && yarn test"
+        }
+    },
     "dependencies": {
         "capitalize": "^2.0.3",
         "chalk": "^4.1.0",
@@ -47,6 +53,7 @@
         "eslint-plugin-promise": "^4.2.1",
         "eslint-plugin-standard": "^4.1.0",
         "esm": "^3.2.25",
+        "husky": "^4.3.0",
         "nyc": "15.1.0",
         "prettier": "^2.1.2",
         "readlint": "^0.7.2",
